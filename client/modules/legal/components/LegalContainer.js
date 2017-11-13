@@ -34,6 +34,7 @@ const LegalContainerContainer = styled.div`
     line-height: 1.6;
     font-size: 18px;
     margin-bottom: 30px;
+    opacity: 0.8;
 
     ${media.tablet`
       margin-bottom: 20px;

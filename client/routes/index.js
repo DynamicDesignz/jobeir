@@ -26,6 +26,7 @@ export function loadRoute(cb) {
 // if (process.env.ENV === 'development') {
 require('../modules/home/containers/Home');
 require('../modules/brand/components/Brand');
+require('../modules/contact-us/components/ContactUs');
 require('../modules/legal/privacy-policy/components/PrivacyPolicy');
 require('../modules/legal/terms-of-service/components/TermsOfService');
 require('../modules/jobs/search/containers/JobsSearch');
@@ -120,6 +121,21 @@ const routes = (
             cb(null, require('../modules/brand/components/Brand').default);
           },
           'brand',
+        );
+      }}
+    />
+    <Route
+      path="/contact-us"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(
+              null,
+              require('../modules/contact-us/components/ContactUs').default,
+            );
+          },
+          'contact-us',
         );
       }}
     />
