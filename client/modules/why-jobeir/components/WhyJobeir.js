@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import AppHead from '../../app/components/AppHead';
 import HomeSearch from '../../home/components/HomeSearch';
 
@@ -60,6 +61,10 @@ const Container = styled.div`margin: 0 auto;`;
 const PageTop = styled.div`
   padding: 80px 0;
   text-align: center;
+
+  ${media.dablet`
+    padding: 24px 0 40px;
+  `};
 `;
 
 const PageGrey = styled.div`
@@ -97,11 +102,24 @@ const PageCard = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 120px 140px;
+
+  ${media.dablet`
+    padding: 60px 70px;
+    margin: 0 24px;
+  `};
+
+  ${media.tablet`
+    padding: 60px 40px;
+  `};
 `;
 
 const MainHeader = styled.h1`
   font-family: ${props => props.theme.fontFamily.tiempos};
   font-size: 52px;
+
+  ${media.dablet`
+    font-size: 32px;
+  `};
 `;
 
 const SectionHeader = styled.h2`
@@ -109,6 +127,10 @@ const SectionHeader = styled.h2`
   margin-bottom: 25px;
   font-size: 38px;
   font-weight: 200;
+
+  ${media.dablet`
+    font-size: 24px;
+  `};
 `;
 
 const SectionText = styled.p`
@@ -120,4 +142,5 @@ const SectionText = styled.p`
 const SearchContainer = styled.div`
   max-width: 900px;
   margin: 0 auto 100px;
+  padding: 0 24px;
 `;

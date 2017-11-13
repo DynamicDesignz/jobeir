@@ -86,11 +86,15 @@ const AppFooterContainer = styled.div`
 const AppFooterContent = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 960px;
+  max-width: 1008px;
   margin: 0 auto;
-  padding: 100px 0 125px;
+  padding: 100px 24px 125px;
 
-  ${media.phablet`
+  svg {
+    margin-bottom: 30px;
+  }
+
+  ${media.tablet`
     flex-direction: column;
     justify-content: center;
     padding: 50px 0;
@@ -104,6 +108,11 @@ const AppFooterListHeader = styled.h5`
   text-transform: uppercase;
   letter-spacing: 0.6px;
   margin-bottom: 20px;
+
+  ${media.tablet`
+    margin-top: 30px;
+    text-align: center;
+  `};
 `;
 
 const AppFooterListItem = styled.li`
@@ -115,7 +124,7 @@ const AppFooterListItem = styled.li`
     opacity: 0.88;
   }
 
-  ${media.phablet`
+  ${media.tablet`
     margin-bottom: 25px;
     text-align: center;
   `};
@@ -125,7 +134,7 @@ const StyledLink = styled(Link)`
   color: ${props => props.theme.colors.black};
   text-decoration: none;
 
-  ${media.phablet`
+  ${media.tablet`
     margin-bottom: 20px;
     padding: 6px;
   `};

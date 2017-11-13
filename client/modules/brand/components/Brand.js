@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import AppHead from '../../app/components/AppHead';
 
 const Brand = () => (
   <BrandContainer>
     <AppHead title="Brand" />
     <BrandTop>
-      <BrandTopHeader>Usage</BrandTopHeader>
+      <BrandTopHeader>
+        <BrandTopHeaderLine />Brand
+      </BrandTopHeader>
       <BrandTopText>
         Please do not modify the Jobeir marks or use them in inappropriate
         matters. Use your best judgement when placing the marks, but we
@@ -15,7 +18,7 @@ const Brand = () => (
         Jobeir with no consent.
       </BrandTopText>
     </BrandTop>
-    <div style={{ display: 'flex' }}>
+    <Flex>
       <BrandImageContainer>
         <BrandSmallHeader>White background</BrandSmallHeader>
         <ImageContainer>
@@ -35,7 +38,7 @@ const Brand = () => (
           />
         </ImageContainer>
       </BrandImageContainer>
-    </div>
+    </Flex>
     <DownloadButton href="/public/static/brand/jobeir-brand.zip">
       Download logo files
     </DownloadButton>
@@ -48,18 +51,44 @@ const BrandContainer = styled.div`
   max-width: 960px;
   padding: 40px 0 100px;
   margin: 0 auto;
+
+  ${media.dablet`
+    padding: 0 24px;
+  `};
 `;
 
 const BrandTop = styled.div`
   max-width: 960px;
   padding: 80px 0;
   margin: 0 auto;
+
+  ${media.dablet`
+    padding: 24px 0;
+  `};
 `;
 
 const BrandTopHeader = styled.h2`
+  display: flex;
+  align-items: center;
   font-family: ${props => props.theme.fontFamily.tiempos};
-  font-size: 40px;
-  margin-bottom: 20px;
+  font-size: 52px;
+  margin-bottom: 30px;
+
+  ${media.dablet`
+    font-size: 32px;
+  `};
+`;
+
+const BrandTopHeaderLine = styled.span`
+  display: inline-block;
+  height: 3px;
+  width: 60px;
+  margin-right 20px;
+  background: ${props => props.theme.colors.black};
+
+  ${media.dablet`
+    width:40px;
+  `};
 `;
 
 const BrandTopText = styled.p`
@@ -67,6 +96,10 @@ const BrandTopText = styled.p`
   opacity: 0.8;
   line-height: 1.6;
   font-size: 18px;
+
+  ${media.dablet`
+    margin-bottom: 30px;
+  `};
 `;
 
 const BrandSmallHeader = styled.h4`
@@ -76,6 +109,14 @@ const BrandSmallHeader = styled.h4`
   margin-bottom: 8px;
 `;
 
+const Flex = styled.div`
+  display: flex;
+
+  ${media.dablet`
+    flex-direction: column;
+  `};
+`;
+
 const ImageContainer = styled.div`
   width: 400px;
   padding: 40px 80px;
@@ -83,6 +124,12 @@ const ImageContainer = styled.div`
   border-radius: 4px;
   background: ${props => (props.purple ? '#595c71' : '#fff')};
   margin-right: 40px;
+
+  ${media.dablet`
+    width: 100%;
+    padding: 20px 40px;
+    margin: 0 auto;
+  `};
 `;
 
 const BrandImageContainer = styled.div`margin-bottom: 50px;`;

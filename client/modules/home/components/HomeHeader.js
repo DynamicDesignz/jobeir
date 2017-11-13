@@ -24,7 +24,7 @@ const Header = styled.div`
   line-height: 1.1;
 
   ${media.desktop`
-    padding: 30px 24px;
+    padding: 30px 80px;
   `};
 
   ${media.tablet`
@@ -38,20 +38,21 @@ const HeaderText = styled.h1`
   text-align: center;
   line-height: 1.2;
   font-family: ${props => props.theme.fontFamily.tiempos};
-  margin-bottom: 40px;
+  margin-bottom: 34px;
 
   ${media.desktop`
-    font-size: 50px;
+    font-size: 48px;
   `};
 
-  ${media.phablet`
+  ${media.tablet`
     font-size: 38px;
+    text-align: left;
   `};
 
   ${media.phone`
     font-size: 34px;
     text-align: left;
     margin: 10px auto 48px;
-    line-height: 1.3;
+    line-height: 1.4;
   `};
 `;
