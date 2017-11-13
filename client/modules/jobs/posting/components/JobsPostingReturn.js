@@ -9,7 +9,7 @@ import { ChevronLeft } from '../../../../icons/';
 const JobsPostingReturn = (props: { query: string, externalLink: string }) => (
   <div>
     <JobsPostingReturnContainer>
-      <StyledLink to={`/jobs/?${props.query}`}>
+      <StyledLink to={`/jobs?${props.query}`}>
         <StyledChevronLeft />Return to Job Search
       </StyledLink>
       <StyledExternalLink

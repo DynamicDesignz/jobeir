@@ -60,11 +60,6 @@ const AppFooter = () => (
               Github
             </StyledLink>
           </AppFooterListItem>
-          <AppFooterListItem>
-            <StyledLink target="_blank" to="https://dribbble.com/brotzky">
-              Dribbble
-            </StyledLink>
-          </AppFooterListItem>
         </AppFooterList>
       </div>
       <div>

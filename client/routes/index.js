@@ -25,6 +25,7 @@ export function loadRoute(cb) {
  */
 // if (process.env.ENV === 'development') {
 require('../modules/home/containers/Home');
+require('../modules/brand/components/Brand');
 require('../modules/legal/privacy-policy/components/PrivacyPolicy');
 require('../modules/legal/terms-of-service/components/TermsOfService');
 require('../modules/jobs/search/containers/JobsSearch');
@@ -34,6 +35,7 @@ require('../modules/auth/login/containers/Login');
 require('../modules/auth/signup/containers/Signup');
 require('../modules/auth/reset/containers/Reset');
 require('../modules/auth/password/containers/Password');
+require('../modules/why-jobeir/components/WhyJobeir');
 require('../modules/account/shell/containers/Shell');
 require('../modules/account/create/step/containers/Step');
 require('../modules/account/create/step/containers/StepComplete');
@@ -91,6 +93,33 @@ const routes = (
             );
           },
           'terms-of-service',
+        );
+      }}
+    />
+    <Route
+      path="/why-jobeir"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(
+              null,
+              require('../modules/why-jobeir/components/WhyJobeir').default,
+            );
+          },
+          'why-jobeir',
+        );
+      }}
+    />
+    <Route
+      path="/brand"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(null, require('../modules/brand/components/Brand').default);
+          },
+          'brand',
         );
       }}
     />
