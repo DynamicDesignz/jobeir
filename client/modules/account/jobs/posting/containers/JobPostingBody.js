@@ -77,21 +77,21 @@ const JobPostingBodyContainer = styled.div`
 
   h2 {
     font-weight: 800;
-    font-size: 28px;
-    margin-bottom: 15px;
+    font-size: 24px;
+    margin-bottom: 10px;
 
     ${media.phablet`
       font-size: 20px;
     `};
 
     ${media.phonePlus`
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     `};
   }
 
   h3 {
     font-weight: 800;
-    font-size: 24px;
+    font-size: 20px;
 
     ${media.phablet`
       font-size: 18px;
@@ -100,7 +100,7 @@ const JobPostingBodyContainer = styled.div`
 
   h4,
   h6 {
-    font-size: 22px;
+    font-size: 20px;
 
     ${media.phablet`
       font-size: 18px;

@@ -13,10 +13,10 @@ const WhyJobeir = () => (
     <PageCard boxShadow>
       <SectionHeader>Our vision</SectionHeader>
       <SectionText>
-        We're creating the best place to find a job in technology. Finding the
-        best jobs in technology should be easy, enjoyable, and efficient. This
-        community is for anyone that wants to move their career forward or grow
-        their business.
+        We're creating the best place to find a job in technology that we're
+        proud of. Finding the best jobs in technology should be easy, enjoyable,
+        and efficient. This community is for anyone that wants to move their
+        career forward or grow their business.
         {/* At Jobeir we are building a platform to find the best jobs in technology. */}
       </SectionText>
     </PageCard>
@@ -25,18 +25,19 @@ const WhyJobeir = () => (
         <SectionHeader>We sweat the details</SectionHeader>
         <SectionText>
           There's no challenge we're afraid of at Jobeir. Our focus is always on
-          creating the best no matter what the task is. All those little details
-          add up to create a platform that people love using.
+          creating the best no matter what the task is — it's not about having
+          the most or the biggest for us, it's about the best. All those little
+          details add up to create a platform that people love using.
         </SectionText>
       </PageCard>
     </PageGrey>
     <PageCard boxShadow>
       <SectionHeader>A human touch</SectionHeader>
       <SectionText>
-        Companies are collections of people working together to solve problems.
-        Without people these companies would fail. That's why having a human
-        touch is core to what Jobeir is striving to achieve. We're here to serve
-        you.
+        Companies are collections of people working together to improve the
+        world. Without people these companies would fail. That's why having a
+        human touch is core to what Jobeir is striving to achieve. We're here to
+        serve you.
         {/* At Jobeir we are building a platform to find the best jobs in technology. */}
       </SectionText>
     </PageCard>
@@ -45,7 +46,8 @@ const WhyJobeir = () => (
       <SectionText>
         Transparency into our process, product, and goals helps us get feedback
         from our community. Open communication will keep us on track and keep
-        you in the loop for all future events, updates, and goals.
+        you in the loop for all future events, updates, and goals. Have feedback
+        or suggestions? <a href="/contact-us">Contact us</a>.
       </SectionText>
     </PageCard>
     <SearchContainer>
@@ -137,6 +139,10 @@ const SectionText = styled.p`
   line-height: 2;
   font-size: 18px;
   opacity: 0.8;
+
+  a {
+    color: ${props => props.theme.colors.black};
+  }
 `;
 
 const SearchContainer = styled.div`

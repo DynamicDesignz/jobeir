@@ -13,9 +13,6 @@ const AppFooter = () => (
         <AppFooterListHeader>Company</AppFooterListHeader>
         <AppFooterList>
           <AppFooterListItem>
-            <StyledLink to="/who-we-are">Who we are</StyledLink>
-          </AppFooterListItem>
-          <AppFooterListItem>
             <StyledLink to="/contact-us">Contact us</StyledLink>
           </AppFooterListItem>
           <AppFooterListItem>

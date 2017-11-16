@@ -6,37 +6,39 @@ import AppHead from '../../app/components/AppHead';
 const ContactUs = () => (
   <ContactUsContainer>
     <AppHead title="Contact us" />
-    <ContactUsTop>
-      <ContactUsTopHeader>
-        <ContactUsTopHeaderLine />Contact us
-      </ContactUsTopHeader>
-      <ContactUsTopText>
-        Have questions? Just want to talk? Please contact us directly through
-        email and we'll get back to you as soon as possible.
-      </ContactUsTopText>
-    </ContactUsTop>
     <div>
-      <div style={{ display: 'flex' }}>
-        <ContactUsPerson>
-          <ContactUsPersonName>Katie Bozek</ContactUsPersonName>
-          <ContactUsPersonTitle>Operations</ContactUsPersonTitle>
-          <ContactUsPersonEmail href="mailto:katie@jobeir.com">
-            katie@jobeir.com
-          </ContactUsPersonEmail>
-        </ContactUsPerson>
-        <ContactUsPerson>
-          <ContactUsPersonName>Dennis Brotzky</ContactUsPersonName>
-          <ContactUsPersonTitle>Founder</ContactUsPersonTitle>
-          <ContactUsPersonEmail href="mailto:dennis@jobeir.com">
-            dennis@jobeir.com
-          </ContactUsPersonEmail>
-        </ContactUsPerson>
-      </div>
-      <ContactUsAddress>
-        <ContactUsPersonTitle>705 - 518 Beatty St</ContactUsPersonTitle>
-        <ContactUsPersonTitle>Vancouver, BC, Canada</ContactUsPersonTitle>
-        <ContactUsPersonTitle>V6G 6G8</ContactUsPersonTitle>
-      </ContactUsAddress>
+      <ContactUsTop>
+        <ContactUsTopHeader>
+          <ContactUsTopHeaderLine />Contact us
+        </ContactUsTopHeader>
+        <ContactUsTopText>
+          Have questions? Just want to talk? Please contact us directly through
+          email and we'll get back to you as soon as possible.
+        </ContactUsTopText>
+      </ContactUsTop>
+      <ContactUsContentContainer>
+        <ContactUsContentName>
+          <ContactUsPerson>
+            <ContactUsPersonName>Katie Bozek</ContactUsPersonName>
+            <ContactUsPersonTitle>Operations</ContactUsPersonTitle>
+            <ContactUsPersonEmail href="mailto:katie@jobeir.com">
+              katie@jobeir.com
+            </ContactUsPersonEmail>
+          </ContactUsPerson>
+          <ContactUsPerson>
+            <ContactUsPersonName>Dennis Brotzky</ContactUsPersonName>
+            <ContactUsPersonTitle>Founder</ContactUsPersonTitle>
+            <ContactUsPersonEmail href="mailto:dennis@jobeir.com">
+              dennis@jobeir.com
+            </ContactUsPersonEmail>
+          </ContactUsPerson>
+        </ContactUsContentName>
+        <ContactUsAddress>
+          <ContactUsPersonTitle>705 - 518 Beatty St</ContactUsPersonTitle>
+          <ContactUsPersonTitle>Vancouver, BC, Canada</ContactUsPersonTitle>
+          <ContactUsPersonTitle>V6G 6G8</ContactUsPersonTitle>
+        </ContactUsAddress>
+      </ContactUsContentContainer>
     </div>
   </ContactUsContainer>
 );
@@ -45,11 +47,11 @@ export default ContactUs;
 
 const ContactUsContainer = styled.div`
   max-width: 960px;
-  padding: 40px 0 100px;
+  padding: 40px 0 120px;
   margin: 0 auto;
 
   ${media.dablet`
-    padding: 0 24px;
+    padding: 0 24px 80px;
   `};
 `;
 
@@ -100,15 +102,18 @@ const ContactUsTopText = styled.p`
 
 const ContactUsPerson = styled.div`
   font-size: 20px;
-  margin-bottom: 60px;
+  margin-right: 80px;
   padding-left: 20px;
-  border-left: 2px solid #d6d6d6;
+  border-left: 2px solid #e3e3e3;
   padding: 6px 0 6px 24px;
-  margin-right: 60px;
+
+  ${media.tablet`
+    display: block;
+    margin: 0 0 40px 0;
+  `};
 `;
 const ContactUsAddress = styled.div`
   font-size: 20px;
-  margin-bottom: 60px;
   padding: 6px 0 6px 0;
 `;
 
@@ -124,12 +129,23 @@ const ContactUsPersonEmail = styled.a`
   color: ${props => props.theme.colors.black};
 `;
 
-const ContactUsMap = styled.img`
-  width: 85%;
-  display: block;
+const ContactUsContentName = styled.div`
+  display: flex;
 
-  ${media.hd`
-    width: 100%;
-    margin: 0 auto;
+  ${media.tablet`
+    display: block;
+    margin-bottom: 20px;
+  `};
+`;
+
+const ContactUsContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ${media.tablet`
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   `};
 `;

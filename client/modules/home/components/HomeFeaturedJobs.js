@@ -12,11 +12,11 @@ const featuredJobs = [
       'As Stripe looks beyond the API, we are hiring engineers to help build beautiful, usable interfaces for businesses building on top of Stripe.',
     image: {
       src: '/public/static/imgs/home/stripe-office.jpg',
-      alt: '',
+      alt: 'Stripe job at Jobeir',
     },
     companyIcon: {
       src: '/public/static/imgs/home/stripe-logo-icon.png',
-      alt: '',
+      alt: 'Stripe icon',
     },
   },
   {
@@ -28,11 +28,11 @@ const featuredJobs = [
       'We are looking for creative and operational thinkers that are fueled by an entrepreneurial spirit to join our tight-knit group of product managers.',
     image: {
       src: '/public/static/imgs/home/medium-office.jpg',
-      alt: '',
+      alt: 'Medium job at Jobeir',
     },
     companyIcon: {
       src: '/public/static/imgs/home/medium-logo-icon.png',
-      alt: '',
+      alt: 'Medium icon',
     },
   },
   {
@@ -43,11 +43,11 @@ const featuredJobs = [
       'As a designer you will work on a product used by anyone from small fashion boutiques, global brands or even international product suppliers and fulfillment centres.',
     image: {
       src: '/public/static/imgs/home/shopify-office.jpg',
-      alt: '',
+      alt: 'Shopify jobs at Jobeir',
     },
     companyIcon: {
       src: '/public/static/imgs/home/shopify-logo-icon.png',
-      alt: '',
+      alt: 'Shopify icon',
     },
   },
 ];

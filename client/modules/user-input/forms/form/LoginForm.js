@@ -54,10 +54,12 @@ class LoginForm extends Component {
 
 const mapStateToProps = state => ({
   auth: state.session.auth,
+  initialValues: state.routing.locationBeforeTransitions.query, // pull initial values from account reducer
 });
 
 LoginForm = reduxForm({
   form: 'login',
+  enableReinitialize: true,
 })(LoginForm);
 
 export default connect(mapStateToProps)(LoginForm);
