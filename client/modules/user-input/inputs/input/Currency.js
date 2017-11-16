@@ -24,6 +24,7 @@ export const Currency = (props: {
         {...input}
         id={input.name}
         name={input.name}
+        value={input.value || ''}
         placeholder={placeholder}
         showError={showError}
         mask={numberMask}

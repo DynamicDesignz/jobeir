@@ -65,15 +65,17 @@ export const createJob = async (req, res) => {
     location: body.location,
     remote: body.remote,
     salary: {
-      max: body.salary.max,
-      min: body.salary.min,
+      max: (body.salary && body.salary.max) || 0,
+      min: (body.salary && body.salary.min) || 0,
     },
     equity: {
-      max: parsePercentage(body.equity.max) || 0,
-      min: parsePercentage(body.equity.min) || 0,
-      offer: body.equity.offer,
+      max: (body.equity && parsePercentage(body.equity.max)) || 0,
+      min: (body.equity && parsePercentage(body.equity.min)) || 0,
+      offer: body.equity && body.equity.offer,
     },
   }).save();
+
+  console.log(job);
 
   if (!job) throw Error(err.ERROR_CREATING_JOB);
 
