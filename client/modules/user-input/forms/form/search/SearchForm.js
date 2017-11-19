@@ -12,7 +12,7 @@ import { jobOptions } from '../../../options';
 
 const customStyles = {
   top: 'calc(100% + 6px)',
-  left: '0'
+  left: '0',
 };
 
 class Input extends Component {
@@ -34,7 +34,7 @@ class Input extends Component {
       input,
       label,
       meta,
-      location
+      location,
     } = this.props;
     const showError = meta.touched && meta.error && meta.invalid;
 
@@ -110,7 +110,7 @@ class SelectInput extends Component {
 const Button = (props: {
   disabled: boolean,
   buttonText: string,
-  location: string
+  location: string,
 }) => (
   <SearchButton
     type="submit"
@@ -127,7 +127,7 @@ class SearchForm extends Component {
       q: data.title && data.title.value,
       l: data.location,
       lat: data.lat || (data.coordinates && data.coordinates[0]),
-      lng: data.lng || (data.coordinates && data.coordinates[1])
+      lng: data.lng || (data.coordinates && data.coordinates[1]),
     };
     const query = queryString.stringify(queryData);
 
@@ -172,7 +172,7 @@ class SearchForm extends Component {
 
 SearchForm = reduxForm({
   form: 'search',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(SearchForm);
 
 const mapStateToProps = state => ({
@@ -181,9 +181,9 @@ const mapStateToProps = state => ({
       state.location &&
       state.location.city &&
       `${state.location.city}, ${state.location.region}`,
-    coordinates: state.location && state.location.ll
+    coordinates: state.location && state.location.ll,
   },
-  isOpen: state.search.jobs.isOpen
+  isOpen: state.search.jobs.isOpen,
 });
 
 export default connect(mapStateToProps)(SearchForm);
@@ -554,7 +554,7 @@ const SelectContainer = styled.div`
     position: absolute;
     left: -15px;
     top: 100%;
-    width: 363px;
+    width: 393px;
 
     z-index: 1;
     -webkit-overflow-scrolling: touch;

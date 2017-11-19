@@ -15,7 +15,7 @@ class Autocomplete extends Component {
     isSearching: boolean,
     show: boolean,
     hasTyped: boolean,
-    selectedIndex: number
+    selectedIndex: number,
   };
 
   constructor(props) {
@@ -27,7 +27,7 @@ class Autocomplete extends Component {
       noResults: false,
       show: false,
       hasTyped: false,
-      selectedIndex: 0
+      selectedIndex: 0,
     };
 
     this.debouncedSearch = debounce(function(input) {
@@ -51,7 +51,7 @@ class Autocomplete extends Component {
 
     this.location.addEventListener('focus', this.handleFocus);
     this.location.addEventListener('blur', this.handleBlur);
-    this.location.addEventListener('keydown', this.handleTyping);
+    this.location.addEventListener('keyup', this.handleTyping);
   }
 
   componentWillUnmount() {
@@ -60,7 +60,7 @@ class Autocomplete extends Component {
 
     this.location.removeEventListener('focus', this.handleFocus);
     this.location.removeEventListener('blur', this.handleBlur);
-    this.location.removeEventListener('keydown', this.handleTyping);
+    this.location.removeEventListener('keyup', this.handleTyping);
   }
 
   getDetailsByPlaceId = (placeId: string) => {
@@ -75,7 +75,7 @@ class Autocomplete extends Component {
   handleTyping = (event: {
     preventDefault: Function,
     which: number,
-    target: { value: string }
+    target: { value: string },
   }) => {
     const { isSearching, predictions, selectedIndex } = this.state;
     const lastResult: number = predictions.length - 1;
@@ -84,7 +84,7 @@ class Autocomplete extends Component {
     const downARrow: boolean = event.which === 40;
     const enter: boolean = event.which === 13;
 
-    this.setState({ noResults: false });
+    this.setState({ noResults: false, hasTyped: true });
 
     // move the selected list item up
     if (upArrow) {
@@ -114,8 +114,15 @@ class Autocomplete extends Component {
       this.setState({ isSearching: true });
     }
 
+    /**
+     * If the user has typed and the input field is not empty then
+     * make a decounded search with their input value. Otherwise,
+     * don't display the "Searching address..." text.
+     */
     if (inputValue) {
       this.debouncedSearch(inputValue);
+    } else {
+      this.setState({ isSearching: false });
     }
   };
 
@@ -130,9 +137,9 @@ class Autocomplete extends Component {
   handlePlaceDetails = (
     place: {
       address: { address_components: Array<string> },
-      geometry: { location: { lat: Function, lng: Function } }
+      geometry: { location: { lat: Function, lng: Function } },
     },
-    status: string
+    status: string,
   ) => {
     const { dispatch, formName } = this.props;
 
@@ -147,7 +154,7 @@ class Autocomplete extends Component {
         administrative_area_level_1: 'long_name',
         administrative_area_level_2: 'long_name',
         country: 'long_name',
-        postal_code: 'short_name'
+        postal_code: 'short_name',
       };
 
       const location: { address: {}, coordinates: Array<number> } = {
@@ -160,9 +167,9 @@ class Autocomplete extends Component {
           administrative_area_level_2: '',
           short_administrative_area_level_1: '',
           country: '',
-          postal_code: ''
+          postal_code: '',
         },
-        coordinates: [lng, lat]
+        coordinates: [lng, lat],
       };
 
       for (let i = 0; i < place.address_components.length; i++) {
@@ -187,8 +194,8 @@ class Autocomplete extends Component {
             'search',
             'location',
             `${location.address.locality}, ${location.address
-              .short_administrative_area_level_1}`
-          )
+              .short_administrative_area_level_1}`,
+          ),
         );
       } else {
         dispatch(change('company', 'fullAddress', ''));
@@ -216,7 +223,7 @@ class Autocomplete extends Component {
       noResults,
       show,
       predictions,
-      selectedIndex
+      selectedIndex,
     } = this.state;
 
     return (
@@ -230,7 +237,7 @@ class Autocomplete extends Component {
           <AutocompleteSearching>
             {noResults
               ? 'No address found. Try a different address.'
-              : 'Searching Address...'}
+              : 'Searching address...'}
           </AutocompleteSearching>
         ) : (
           <div>

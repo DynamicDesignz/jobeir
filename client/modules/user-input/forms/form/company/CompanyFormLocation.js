@@ -76,13 +76,13 @@ const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
   companies: state.account.companies,
-  locations: selector(state, 'locations') || []
+  locations: selector(state, 'locations') || [],
 });
 
 CompanyFormStepThree = reduxForm({
   form: 'company',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  forceUnregisterOnUnmount: true,
 })(CompanyFormStepThree);
 
 export default connect(mapStateToProps)(CompanyFormStepThree);
