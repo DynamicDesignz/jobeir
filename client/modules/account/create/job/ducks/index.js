@@ -34,7 +34,7 @@ export const initialState: {
   isDeleting: boolean,
   filter: string,
   postings: Array<{}>,
-  errors: Array<{}>
+  errors: Array<{}>,
 } = {
   isCreating: false,
   isFetching: false,
@@ -42,44 +42,44 @@ export const initialState: {
   isDeleting: false,
   filter: 'All Jobs',
   postings: [],
-  errors: []
+  errors: [],
 };
 
 export default (state: {} = initialState, action: {}): {} => {
   switch (action.type) {
     case CREATE_JOB_REQUEST:
       return Object.assign({}, state, {
-        isCreating: true
+        isCreating: true,
       });
     case CREATE_JOB_SUCCESS:
       return Object.assign({}, state, {
         isCreating: false,
         postings: [...state.postings, action.payload.data.job],
-        errors: []
+        errors: [],
       });
     case CREATE_JOB_FAILURE:
       return Object.assign({}, state, {
         isCreating: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case GET_JOBS_REQUEST:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
       });
     case GET_JOBS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         postings: action.payload.data.postings,
-        errors: []
+        errors: [],
       });
     case GET_JOBS_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case UPDATE_JOB_REQUEST:
       return Object.assign({}, state, {
-        isUpdating: true
+        isUpdating: true,
       });
     case UPDATE_JOB_SUCCESS:
       return Object.assign({}, state, {
@@ -88,9 +88,9 @@ export default (state: {} = initialState, action: {}): {} => {
           posting =>
             posting._id === action.payload.data.posting._id
               ? action.payload.data.posting
-              : posting
+              : posting,
         ),
-        errors: []
+        errors: [],
       });
     case STRIPE_PAYMENT_SUCCESS:
       return Object.assign({}, state, {
@@ -99,22 +99,22 @@ export default (state: {} = initialState, action: {}): {} => {
           posting =>
             posting._id === action.payload.data.job._id
               ? action.payload.data.job
-              : posting
+              : posting,
         ),
-        errors: []
+        errors: [],
       });
     case UPDATE_JOB_FAILURE:
       return Object.assign({}, state, {
         isUpdating: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case GET_JOB_REQUEST:
       return Object.assign({}, state, {
-        isFetching: true
+        isFetching: true,
       });
     case GET_JOB_SUCCESS:
       const alreadyExists: boolean = state.postings.some(
-        posting => posting._id === action.payload.data.posting._id
+        posting => posting._id === action.payload.data.posting._id,
       );
 
       if (alreadyExists) {
@@ -124,41 +124,41 @@ export default (state: {} = initialState, action: {}): {} => {
             posting =>
               posting._id === action.payload.data.posting._id
                 ? { ...posting, company: action.payload.data.posting.company }
-                : posting
+                : posting,
           ),
-          errors: []
+          errors: [],
         });
       }
       return Object.assign({}, state, {
         isFetching: false,
         postings: [...state.postings, action.payload.data.posting],
-        errors: []
+        errors: [],
       });
 
     case GET_JOB_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
 
     case DELETE_JOB_REQUEST:
       return Object.assign({}, state, {
-        isDeleting: true
+        isDeleting: true,
       });
     case DELETE_JOB_SUCCESS:
       return Object.assign({}, state, {
         isDeleting: false,
         postings: state.postings.filter(posting => posting._id !== payload),
-        errors: []
+        errors: [],
       });
     case DELETE_JOB_FAILURE:
       return Object.assign({}, state, {
         isDeleting: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case UPDATE_JOB_FILTER:
       return Object.assign({}, state, {
-        filter: action.payload.filter
+        filter: action.payload.filter,
       });
     case SWITCH_ACTIVE_COMPANY_SUCCESS:
     case CREATE_COMPANY_SUCCESS:
@@ -171,37 +171,42 @@ export default (state: {} = initialState, action: {}): {} => {
 export const createJob = (
   companyId: string,
   data: {},
-  redirectPathname: string
+  redirectPathname: string,
 ): {} => ({
   type: CREATE_JOB_REQUEST,
-  payload: { companyId, data, redirectPathname }
+  payload: { companyId, data, redirectPathname },
 });
 
 export const getJobs = (companyId: string): {} => ({
   type: GET_JOBS_REQUEST,
-  payload: { companyId }
+  payload: { companyId },
 });
 
 export const getJob = (companyId: string, jobId: string): {} => ({
   type: GET_JOB_REQUEST,
-  payload: { companyId, jobId }
+  payload: { companyId, jobId },
 });
 
-export const updateJob = (companyId: string, jobId: string, data: {}): {} => ({
+export const updateJob = (
+  companyId: string,
+  jobId: string,
+  data: {},
+  showJobPReview,
+): {} => ({
   type: UPDATE_JOB_REQUEST,
-  payload: { companyId, jobId, data }
+  payload: { companyId, jobId, data, showJobPReview },
 });
 
 export const deleteJob = (
   companyId: string,
   jobId: string,
-  redirectPathname: string
+  redirectPathname: string,
 ): {} => ({
   type: DELETE_JOB_REQUEST,
-  payload: { companyId, jobId, redirectPathname }
+  payload: { companyId, jobId, redirectPathname },
 });
 
 export const updateJobFilter = (filter: string): {} => ({
   type: UPDATE_JOB_FILTER,
-  payload: { filter }
+  payload: { filter },
 });

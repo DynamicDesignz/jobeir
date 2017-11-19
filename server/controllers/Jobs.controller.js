@@ -71,7 +71,7 @@ export const createJob = async (req, res) => {
     equity: {
       max: (body.equity && parsePercentage(body.equity.max)) || 0,
       min: (body.equity && parsePercentage(body.equity.min)) || 0,
-      offer: body.equity && body.equity.offer,
+      offer: (body.equity && body.equity.offer) || 'No',
     },
   }).save();
 

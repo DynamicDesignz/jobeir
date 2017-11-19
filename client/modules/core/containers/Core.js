@@ -130,6 +130,10 @@ injectGlobal`
     font-family: inherit;
   }
 
+  button {
+    outline: none;
+  }
+
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #d9dad9;
     font-weight: 200;

@@ -13,7 +13,8 @@ export const SelectSearch = (props: {
   meta: { touched: boolean, error: boolean, invalid: boolean },
   placeholder: string,
 }) => {
-  const { meta } = props;
+  console.log({ props });
+  const { input, options, meta, placeholder } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
 
   /**
@@ -25,11 +26,12 @@ export const SelectSearch = (props: {
     <InputWrapper {...props}>
       <SelectContainer showError={showError}>
         <Select
-          {...props.input}
-          id={props.input.name}
-          name={props.input.name}
-          options={props.options}
-          placeholder={props.placeholder}
+          {...input}
+          id={input.name}
+          name={input.name}
+          options={options}
+          selectedValue={input.value}
+          placeholder={placeholder}
           onBlur={() => {}}
         />
       </SelectContainer>

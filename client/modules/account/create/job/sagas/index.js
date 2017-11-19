@@ -15,7 +15,7 @@ import {
   UPDATE_JOB_FAILURE,
   DELETE_JOB_REQUEST,
   DELETE_JOB_SUCCESS,
-  DELETE_JOB_FAILURE
+  DELETE_JOB_FAILURE,
 } from '../ducks';
 import { redirectTo } from '../../../../user/ducks/';
 
@@ -25,7 +25,7 @@ export function* createJob(action) {
       fetchApi,
       'POST',
       `/company/${action.payload.companyId}/jobs`,
-      action.payload.data
+      action.payload.data,
     );
     yield put({ type: CREATE_JOB_SUCCESS, payload });
     localStorage.removeItem('state');
@@ -41,9 +41,10 @@ export function* updateJobSaga(action) {
       fetchApi,
       'PUT',
       `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`,
-      action.payload.data
+      action.payload.data,
     );
     yield put({ type: UPDATE_JOB_SUCCESS, payload });
+    yield call(action.payload.showJobPReview);
   } catch (errors) {
     yield put({ type: UPDATE_JOB_FAILURE, errors });
   }
@@ -54,7 +55,7 @@ export function* getJobsSaga(action) {
     const payload = yield call(
       fetchApi,
       'GET',
-      `/company/${action.payload.companyId}/jobs`
+      `/company/${action.payload.companyId}/jobs`,
     );
     yield put({ type: GET_JOBS_SUCCESS, payload });
   } catch (errors) {
@@ -67,7 +68,7 @@ export function* getJobSaga(action) {
     const payload = yield call(
       fetchApi,
       'GET',
-      `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`
+      `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`,
     );
     yield put({ type: GET_JOB_SUCCESS, payload });
   } catch (errors) {
@@ -80,7 +81,7 @@ export function* deleteJobSaga(action) {
     const payload = yield call(
       fetchApi,
       'DELETE',
-      `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`
+      `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`,
     );
     yield put({ type: DELETE_JOB_SUCCESS, payload: action.payload.jobId });
     yield call(redirectTo, `${action.payload.redirectPathname}`);

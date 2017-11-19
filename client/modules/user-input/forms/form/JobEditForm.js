@@ -76,10 +76,16 @@ class JobEditFrom extends Component {
   }
 
   formSubmit = (data): void => {
-    const { dispatch, companies, params } = this.props;
-    const title: string = data.title.value;
-    const body: {} = { ...data, title };
-    dispatch(updateJob(companies.activeCompany._id, params.jobId, body));
+    const { dispatch, companies, params, showJobPReview } = this.props;
+
+    dispatch(
+      updateJob(
+        companies.activeCompany._id,
+        params.jobId,
+        data,
+        showJobPReview,
+      ),
+    );
   };
 
   render() {
@@ -97,11 +103,18 @@ class JobEditFrom extends Component {
               <Field
                 name="title"
                 label="What's the job title?"
-                placeholder="Search titles"
+                placeholder="Senior Product Designer, Backend Engineer"
+                validate={[required]}
+                component={Text}
+              />
+              <Field
+                name="role"
+                label="What's the main role of this position?"
+                placeholder="Search roles"
                 validate={[required]}
                 options={jobOptions}
                 component={SelectSearch}
-                selectedValue={initialValues && initialValues.title}
+                selectedValue={initialValues && initialValues.role}
               />
               <div style={{ paddingBottom: '1rem' }} />
               <Field
@@ -109,9 +122,10 @@ class JobEditFrom extends Component {
                 name="description"
                 ui={{ maxWidth: '100%' }}
                 validate={[required, wysiwygLength(25)]}
-                initialValues={initialValues && initialValues.descriptionRaw}
+                initialValue={initialValues && initialValues.descriptionRaw}
                 component={Wysiwyg}
               />
+              <div style={{ paddingBottom: '1rem' }} />
               <Field
                 name="employmentType"
                 label="Employment Type"
@@ -125,7 +139,6 @@ class JobEditFrom extends Component {
                 label="Where will the employee be working?"
                 validate={[required]}
                 options={this.buildLocationsDropdown()}
-                initialValues={initialValues && initialValues.location}
                 type="list"
                 row="full"
                 component={Radio}
@@ -143,7 +156,6 @@ class JobEditFrom extends Component {
                   name="salary.min"
                   label="Salary minimum"
                   placeholder="$"
-                  validate={[required]}
                   parse={parseNumber}
                   component={Currency}
                 />
@@ -151,7 +163,6 @@ class JobEditFrom extends Component {
                   name="salary.max"
                   label="Salary maximum"
                   placeholder="$"
-                  validate={[required]}
                   parse={parseNumber}
                   component={Currency}
                 />
@@ -192,6 +203,7 @@ class JobEditFrom extends Component {
                 <Field
                   name="submitButton"
                   buttonText="Update"
+                  isSubmitting={jobs.isUpdating}
                   component={SubmitButton}
                 />
               </div>
@@ -228,6 +240,9 @@ const FormEditContainer = styled.div`
 const FormEditForm = styled.div`
   max-width: 700px;
   margin: 75px auto 0;
+  padding: 40px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.11);
+  border-radius: 6px;
 `;
 
 const FormListWrapper = styled.div`padding-top: 1rem;`;

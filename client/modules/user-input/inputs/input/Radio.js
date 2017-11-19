@@ -67,12 +67,6 @@ const RadioList = ({ props, showError }) => (
 
         // allowing re-assignment of the value if it's address input
         const checked: boolean = val === props.input.value;
-        {
-          /* 
-        if (props.meta.form === 'job-edit' && props.input.name === 'address') {
-          checked = val === JSON.stringify(props.initialValues.address);
-        } */
-        }
 
         return (
           <RadioListInputContainer

@@ -13,14 +13,9 @@ import JobPostingToggleControls from '../components/JobPostingToggleControls';
  * toggling to edit the posting.
  */
 class JobPostingToggle extends Component {
-  state: {
-    showJobForm: boolean
+  state = {
+    showJobForm: false,
   };
-
-  constructor(props) {
-    super(props);
-    this.state = { showJobForm: false };
-  }
 
   componentDidMount() {
     const { companies, dispatch, params } = this.props;
@@ -34,14 +29,49 @@ class JobPostingToggle extends Component {
   handleDeleteClick = () => {
     const { companies, dispatch, params } = this.props;
     dispatch(
-      deleteJob(companies.activeCompany._id, params.jobId, '/account/jobs')
+      deleteJob(companies.activeCompany._id, params.jobId, '/account/jobs'),
     );
   };
 
+  showJobPReview = () => {
+    this.setState({ showJobForm: false });
+  };
+
+  buildJobEditInitialValues = () => {
+    const {
+      activePosting: {
+        location,
+        descriptionRaw,
+        employmentType,
+        equity,
+        remote,
+        role,
+        salary,
+        title,
+      },
+    } = this.props;
+
+    return {
+      address: JSON.stringify(location.address),
+      descriptionRaw,
+      employmentType,
+      equity: {
+        max: equity.max,
+        min: equity.min,
+        offer: equity.offer,
+      },
+      remote,
+      role,
+      salary: {
+        max: salary.max,
+        min: salary.min,
+      },
+      title,
+    };
+  };
+
   render() {
-    const { jobs, params } = this.props;
-    const activePosting: {} =
-      jobs.postings.find(posting => posting._id === params.jobId) || {};
+    const { activePosting, params } = this.props;
 
     return (
       <JobPostingContainer>
@@ -50,7 +80,11 @@ class JobPostingToggle extends Component {
           handleDeleteClick={this.handleDeleteClick}
         />
         {this.state.showJobForm ? (
-          <JobEditForm initialValues={activePosting} params={params} />
+          <JobEditForm
+            initialValues={this.buildJobEditInitialValues()}
+            params={params}
+            showJobPReview={this.showJobPReview}
+          />
         ) : (
           <JobPosting activePosting={activePosting} params={params} />
         )}
@@ -59,9 +93,13 @@ class JobPostingToggle extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   companies: state.account.companies,
-  jobs: state.account.jobs
+  jobs: state.account.jobs,
+  activePosting:
+    state.account.jobs.postings.find(
+      posting => posting._id === ownProps.params.jobId,
+    ) || {},
 });
 
 export default connect(mapStateToProps)(JobPostingToggle);

@@ -75,7 +75,7 @@ const JobsListItem = (props: {
             <Eye />
           </HideOnMobile>
           <JobsDetailsText>
-            This job post is not viewable. You must{' '}
+            This job post is not live. You must{' '}
             <u
               style={{ textDecoration: 'ink' }}
               onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}

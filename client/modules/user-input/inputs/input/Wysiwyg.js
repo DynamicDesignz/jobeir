@@ -35,18 +35,18 @@ class WysiwygForm extends Component {
    */
   constructor(props) {
     super(props);
-    const { input, initialValues } = props;
+    const { input, initialValue } = props;
     let editorState;
 
     // Checking if we have initial values passed in
-    if (typeof initialValues === 'string') {
+    if (typeof initialValue === 'string') {
       /**
        * Converting the raw initial values that are in JSON format
        * into something that draft js can initialize the editor with
        */
 
       editorState = EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.initialValues)),
+        convertFromRaw(JSON.parse(props.initialValue)),
       );
     } else if (input.value.blocks) {
       editorState = EditorState.createWithContent(convertFromRaw(input.value));
