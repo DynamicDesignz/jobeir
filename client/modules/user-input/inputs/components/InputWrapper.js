@@ -25,6 +25,7 @@ export default InputWrapper;
  * ui an object
  */
 const InputWrapperContainer = styled.div`
+  position: relative;
   display: ${props => props.theme.inputWrapper.display || 'block'};
   align-items: ${props => props.theme.inputWrapper.alignItems || 'initial'};
   max-width: ${props =>

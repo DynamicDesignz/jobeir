@@ -3,7 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { change } from 'redux-form';
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import {
+  EditorState,
+  ContentState,
+  Modifier,
+  convertFromRaw,
+  convertToRaw,
+} from 'draft-js';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import InputWrapper from '../components/InputWrapper';
@@ -18,7 +24,7 @@ import { wysiwig } from '../../themes/wysiwig-theme';
 class WysiwygForm extends Component {
   state: {
     editorState: {},
-    rawEditorState: string
+    rawEditorState: string,
   };
 
   /**
@@ -40,7 +46,7 @@ class WysiwygForm extends Component {
        */
 
       editorState = EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.initialValues))
+        convertFromRaw(JSON.parse(props.initialValues)),
       );
     } else if (input.value.blocks) {
       editorState = EditorState.createWithContent(convertFromRaw(input.value));
@@ -54,7 +60,7 @@ class WysiwygForm extends Component {
   onEditorStateChange = (editorState): void => {
     const { dispatch, meta } = this.props;
     const rawEditorState = JSON.stringify(
-      convertToRaw(editorState.getCurrentContent())
+      convertToRaw(editorState.getCurrentContent()),
     );
 
     dispatch(change(meta.form, 'descriptionRaw', rawEditorState));
@@ -69,23 +75,41 @@ class WysiwygForm extends Component {
     this.Editor.focusEditor();
   };
 
+  /**
+   * Using handlePastedText as a way to strip all formatting from pasted in text
+   */
+  handlePastedText = text => {
+    const { editorState } = this.state;
+    const blockMap = ContentState.createFromText(text.trim()).blockMap;
+    const newState = Modifier.replaceWithFragment(
+      editorState.getCurrentContent(),
+      editorState.getSelection(),
+      blockMap,
+    );
+    this.onEditorStateChange(
+      EditorState.push(editorState, newState, 'insert-fragment'),
+    );
+    return true;
+  };
+
   render() {
     const { meta, input } = this.props;
+    const { editorState, rawEditorState } = this.state;
     const showError: boolean = meta.touched && meta.error && meta.invalid;
 
     return (
       <InputWrapper {...this.props}>
         <EditorContainer
-          data-val={this.state.rawEditorState}
+          data-val={rawEditorState}
           showError={showError}
           onClick={this.handleClick}
         >
           <Editor
             {...input}
             toolbar={wysiwig}
-            editorState={this.state.editorState}
+            editorState={editorState}
             onEditorStateChange={this.onEditorStateChange}
-            stripPastedStyles={false}
+            handlePastedText={this.handlePastedText}
             ref={editor => (this.Editor = editor)}
           />
         </EditorContainer>
@@ -101,6 +125,8 @@ const EditorContainer = styled.div`
   border: 1px solid #babbbb;
   padding: 20px;
   min-height: ${props => (props.minHeight ? props.minHeight : '300px')};
+  max-height: 400px;
+  overflow: scroll;
   margin: 0 auto 1rem;
   border-color: ${props => (props.showError ? '#f73c3c' : '')};
 
@@ -109,8 +135,29 @@ const EditorContainer = styled.div`
     padding: 14px;
   `};
 
+  .rdw-editor-wrapper {
+    padding-top: 23px;
+
+    ${media.tablet`
+      padding-top: 26px;
+    `};
+  }
+
   .rdw-editor-toolbar {
+    position: absolute;
     margin: -8px 0 0 -10px;
+    top: 37px;
+    width: 95%;
+    background: #fff;
+    padding: 9px 0;
+
+    ${media.tablet`
+      padding: 6px 0;
+    `};
+
+    ${media.phablet`
+      top: 34px;
+    `};
   }
 
   .rdw-editor-toolbar,

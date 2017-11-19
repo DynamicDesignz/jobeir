@@ -27,6 +27,7 @@ const StepHeaderContainer = styled.header`
   height: 70px;
 
   ${media.hd`
+    position: absolute;
     max-width: 900px;
     margin: 0 auto;
     padding: 24px 0;

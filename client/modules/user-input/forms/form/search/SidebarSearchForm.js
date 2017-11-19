@@ -12,7 +12,7 @@ import { jobOptions } from '../../../options';
 
 const customStyles = {
   top: 'calc(100% + 8px)',
-  left: '0'
+  left: '0',
 };
 
 class Input extends Component {
@@ -35,7 +35,7 @@ class Input extends Component {
       meta,
       label,
       placeholder,
-      isMobileFilter
+      isMobileFilter,
     } = this.props;
     const showError = meta.touched && meta.error && meta.invalid;
     return (
@@ -97,7 +97,7 @@ class SelectInput extends Component {
       label,
       options,
       placeholder,
-      isMobileFilter
+      isMobileFilter,
     } = this.props;
 
     return (
@@ -135,7 +135,7 @@ class SidebarSearchForm extends Component {
       q: data.title && data.title.value,
       l: data.location,
       lat: data.lat || data.coordinates[0],
-      lng: data.lng || data.coordinates[1]
+      lng: data.lng || data.coordinates[1],
     };
     const query = queryString.stringify(queryData);
     browserHistory.push(`/jobs?${query}`);
@@ -174,15 +174,15 @@ class SidebarSearchForm extends Component {
 
 SidebarSearchForm = reduxForm({
   form: 'search',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(SidebarSearchForm);
 
 const mapStateToProps = state => ({
   initialValues: {
     location:
       state.location && `${state.location.city}, ${state.location.region}`,
-    coordinates: state.location && state.location.ll
-  }
+    coordinates: state.location && state.location.ll,
+  },
 });
 
 export default connect(mapStateToProps)(SidebarSearchForm);
@@ -349,7 +349,7 @@ const SelectContainer = styled.div`
     line-height: 1.5;
     padding-left: 0;
     padding-right: 18px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: ${props => (props.isMobileFilter ? ' 18px' : '20px')};
     position: absolute;
     right: 0;

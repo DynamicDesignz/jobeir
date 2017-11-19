@@ -11,7 +11,7 @@ import InputWrapper from '../components/InputWrapper';
 export const SelectSearch = (props: {
   input: { value: string, onChange: Function, name: string },
   meta: { touched: boolean, error: boolean, invalid: boolean },
-  placeholder: string
+  placeholder: string,
 }) => {
   const { meta } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
@@ -129,7 +129,7 @@ const SelectContainer = styled.div`
     line-height: 1.5;
     padding-left: 18px;
     padding-right: 18px;
-    font-weight: 600;
+    font-weight: 500;
     position: absolute;
     right: 0;
     top: 0;
