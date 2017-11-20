@@ -2,7 +2,7 @@
 import {
   GET_USER_SUCCESS,
   SERVER_GET_USER_SUCCESS,
-  SWITCH_ACTIVE_COMPANY_SUCCESS
+  SWITCH_ACTIVE_COMPANY_SUCCESS,
 } from '../../../../user/ducks/';
 
 export const CHECK_COMPANY_REQUEST = 'CHECK_COMPANY_REQUEST';
@@ -31,7 +31,7 @@ export const initialState: {
   activeCompany: {},
   filter: string,
   created: [],
-  errors: []
+  errors: [],
 } = {
   isCreating: false,
   isChecking: false,
@@ -41,7 +41,7 @@ export const initialState: {
   activeCompany: {},
   filter: 'Overview',
   created: [],
-  errors: []
+  errors: [],
 };
 
 export default (state?: {} = initialState, action?: {} = {}) => {
@@ -56,77 +56,90 @@ export default (state?: {} = initialState, action?: {} = {}) => {
       const userData: {} = action.payload.data.user;
       const activeCompany =
         userData.companies.find(
-          company => company.name === userData.activeCompany.name
+          company => company.name === userData.activeCompany.name,
         ) || {};
       return Object.assign({}, state, {
         created: userData.companies,
         activeCompany: {
           ...userData.activeCompany,
-          _id: activeCompany._id
-        }
+          _id: activeCompany._id,
+        },
       });
     case CREATE_COMPANY_REQUEST:
       return Object.assign({}, state, {
-        isCreating: true
+        isCreating: true,
       });
     case CREATE_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isCreating: false,
         activeCompany: action.payload.data.company,
-        created: [...state.created, action.payload.data.company]
+        created: [...state.created, action.payload.data.company],
       });
     case CREATE_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isCreating: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case UPDATE_COMPANY_REQUEST:
       return Object.assign({}, state, {
-        isUpdating: true
+        isUpdating: true,
       });
     case UPDATE_COMPANY_SUCCESS:
+      console.log({ state });
       return Object.assign({}, state, {
         isUpdating: false,
         activeCompany: action.payload.data.company,
-        created: [...state.created, action.payload.data.company]
+        created: state.created.map(
+          company =>
+            company._id === action.payload.data.company._id
+              ? action.payload.data.company
+              : company,
+        ),
       });
     case UPDATE_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isUpdating: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case CHECK_COMPANY_REQUEST:
       return Object.assign({}, state, {
-        isChecking: true
+        isChecking: true,
       });
     case CHECK_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isChecking: false,
-        errors: []
+        errors: [],
       });
     case CHECK_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isChecking: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case UPLOAD_COMPANY_LOGO_REQUEST:
       return Object.assign({}, state, {
-        isUploading: true
+        isUploading: true,
+        successfulUpload: false,
       });
     case UPLOAD_COMPANY_LOGO_SUCCESS:
       return Object.assign({}, state, {
         isUploading: false,
         successfulUpload: true,
-        errors: []
+        created: state.created.map(
+          company =>
+            company._id === action.payload.data.company._id
+              ? action.payload.data.company
+              : company,
+        ),
+        errors: [],
       });
     case UPLOAD_COMPANY_LOGO_FAILURE:
       return Object.assign({}, state, {
         isUploading: false,
-        errors: action.errors.errors
+        errors: action.errors.errors,
       });
     case UPDATE_COMPANY_FILTER:
       return Object.assign({}, state, {
-        filter: action.payload.filter
+        filter: action.payload.filter,
       });
     default:
       return state;
@@ -135,25 +148,25 @@ export default (state?: {} = initialState, action?: {} = {}) => {
 
 export const createCompany = (data: {}, redirectPathname: string) => ({
   type: CREATE_COMPANY_REQUEST,
-  payload: { data, redirectPathname }
+  payload: { data, redirectPathname },
 });
 
 export const checkCompany = (data: {}) => ({
   type: CHECK_COMPANY_REQUEST,
-  payload: { data }
+  payload: { data },
 });
 
 export const updateCompany = (data: {}, companyId: string) => ({
   type: UPDATE_COMPANY_REQUEST,
-  payload: { data, companyId }
+  payload: { data, companyId },
 });
 
 export const uploadCompanyLogo = (formData: {}, companyId: string) => ({
   type: UPLOAD_COMPANY_LOGO_REQUEST,
-  payload: { formData, companyId }
+  payload: { formData, companyId },
 });
 
 export const updateCompanyFilter = (filter: string): {} => ({
   type: UPDATE_COMPANY_FILTER,
-  payload: { filter }
+  payload: { filter },
 });

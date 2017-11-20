@@ -15,24 +15,24 @@ const JobsSearchPosting = (props: {
     company: {
       displayName: string,
       product: string,
-      logo: string
+      logo: string,
     },
     location: {
       address: {
         locality: string,
         short_administrative_area_level_1: string,
-        country: string
-      }
+        country: string,
+      },
     },
     _id: string,
     employmentType: string,
     salaryMax: {
       min: number,
-      max: number
+      max: number,
     },
     salaryMin: number,
-    published: string
-  }
+    published: string,
+  },
 }) => {
   const { posting } = props;
 
@@ -120,7 +120,7 @@ const JobsSearchPostingBottom = styled.div`
 `;
 
 const JobsSearchPostingTitle = styled.h2`
-  font-size: 29px;
+  font-size: 28px;
   font-weight: 900;
   margin-bottom: 10px;
   font-family: ${props => props.theme.fontFamily.tiempos};

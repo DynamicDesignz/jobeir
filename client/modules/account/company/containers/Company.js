@@ -7,6 +7,7 @@ import UpdateCompanyFormAbout from '../../../user-input/forms/form/update-compan
 import UpdateCompanyFormContact from '../../../user-input/forms/form/update-company/UpdateCompanyFormContact';
 import UpdateCompanyFormSize from '../../../user-input/forms/form/update-company/UpdateCompanyFormSize';
 import UpdateCompanyFormLocation from '../../../user-input/forms/form/update-company/UpdateCompanyFormLocation';
+import UpdateCompanyUpload from '../../../user-input/forms/form/update-company/UpdateCompanyUpload';
 import { FadeIn } from '../../../../styles/animate/';
 
 const Company = ({ activeCompany = false }) => (
@@ -17,12 +18,16 @@ const Company = ({ activeCompany = false }) => (
           <ShellFormSection text="Tell us about your company">
             <UpdateCompanyFormAbout />
           </ShellFormSection>,
+          <ShellFormSection text="Company logo">
+            <UpdateCompanyUpload />
+          </ShellFormSection>,
           <ShellFormSection text="How can people will contact you?">
             <UpdateCompanyFormContact />
           </ShellFormSection>,
           <ShellFormSection text="Company size">
             <UpdateCompanyFormSize />
           </ShellFormSection>,
+
           <ShellFormSection text="Where's your office located?">
             <UpdateCompanyFormLocation />
           </ShellFormSection>,
