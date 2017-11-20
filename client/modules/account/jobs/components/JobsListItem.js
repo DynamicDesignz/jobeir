@@ -130,6 +130,7 @@ const JobsSub = styled.div`
 
 const JobsDetails = styled.div`
   display: flex;
+  align-items: center;
   margin-top: 12px;
 `;
 

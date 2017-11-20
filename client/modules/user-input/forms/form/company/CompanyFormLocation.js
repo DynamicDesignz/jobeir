@@ -46,7 +46,7 @@ class CompanyFormStepThree extends Component {
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
           />
-          <Autocomplete id="fullAddress" />
+          <Autocomplete formName="company" id="fullAddress" />
         </AutocompleteContainer>
         <MultipleLocations>
           Have more than one office? You can search and enter as many locations

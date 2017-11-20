@@ -35,24 +35,25 @@ class UpdateCompanyFormStepOne extends Component {
 
 const mapStateToProps = state => {
   const init = state.session.user.companies.find(
-    company => company._id === state.account.companies.activeCompany._id
+    company => company._id === state.account.companies.activeCompany._id,
   );
 
   return {
     companies: state.account.companies,
     initialValues: {
+      email: init.email,
       product: init.product,
       phone: init.phone.toString(),
       website: init.website,
       size: init.size,
-      locations: init.locations
-    }
+      locations: init.locations,
+    },
   };
 };
 
 UpdateCompanyFormStepOne = reduxForm({
   form: 'company-edit',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(UpdateCompanyFormStepOne);
 
 export default connect(mapStateToProps)(UpdateCompanyFormStepOne);

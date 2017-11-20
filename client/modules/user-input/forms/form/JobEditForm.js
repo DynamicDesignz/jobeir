@@ -243,6 +243,11 @@ const FormEditForm = styled.div`
   padding: 40px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.11);
   border-radius: 6px;
+
+  ${media.tablet`
+    box-shadow: none;
+    padding: 0;
+  `};
 `;
 
 const FormListWrapper = styled.div`padding-top: 1rem;`;

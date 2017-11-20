@@ -9,7 +9,7 @@ import UpdateCompanyFormSize from '../../../user-input/forms/form/update-company
 import UpdateCompanyFormLocation from '../../../user-input/forms/form/update-company/UpdateCompanyFormLocation';
 import { FadeIn } from '../../../../styles/animate/';
 
-const Company = ({ activeCompany }) => (
+const Company = ({ activeCompany = false }) => (
   <CompanyContainer>
     <FadeIn>
       {activeCompany ? (
@@ -35,7 +35,9 @@ const Company = ({ activeCompany }) => (
 );
 
 const mapStateToProps = state => ({
-  activeCompany: state.account.companies.activeCompany._id,
+  activeCompany:
+    state.account.companies.activeCompany &&
+    state.account.companies.activeCompany._id,
 });
 
 export default connect(mapStateToProps)(Company);

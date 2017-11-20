@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import { ChevronLeft } from '../../../../../icons/';
 
@@ -30,6 +31,10 @@ const JobPostingBackButtonLink = styled(Link)`
   &:hover {
     background: rgba(0, 0, 0, 0.08);
   }
+
+  ${media.tablet`
+    font-size: 16px;
+  `};
 `;
 
 const JobPostingBackButtonLinkText = styled.span`

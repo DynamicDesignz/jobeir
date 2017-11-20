@@ -18,13 +18,21 @@ const ShellHeaderNav = (props: { activeCompany: { _id: string } }) => {
 
   return (
     <ShellHeaderNavContainer>
-      <ShellHeaderNavLink purple to={link}>
+      <ShellHeaderNavLink purple={true} to={link}>
         Create Job
       </ShellHeaderNavLink>
-      <ShellHeaderNavLink hideMobile to="/account/jobs">
+      <ShellHeaderNavLink
+        activeStyle={{ textDecoration: 'underline', textDecorationSkip: 'ink' }}
+        hideMobile
+        to="/account/jobs"
+      >
         Jobs
       </ShellHeaderNavLink>
-      <ShellHeaderNavLink hideMobile to="/account/company">
+      <ShellHeaderNavLink
+        activeStyle={{ textDecoration: 'underline', textDecorationSkip: 'ink' }}
+        hideMobile
+        to="/account/company"
+      >
         Company
       </ShellHeaderNavLink>
     </ShellHeaderNavContainer>
@@ -32,7 +40,7 @@ const ShellHeaderNav = (props: { activeCompany: { _id: string } }) => {
 };
 
 const mapStateToProps = state => ({
-  activeCompany: state.account.companies.activeCompany
+  activeCompany: state.account.companies.activeCompany,
 });
 
 export default connect(mapStateToProps)(ShellHeaderNav);

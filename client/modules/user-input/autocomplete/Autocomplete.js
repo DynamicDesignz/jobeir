@@ -198,8 +198,8 @@ class Autocomplete extends Component {
           ),
         );
       } else {
-        dispatch(change('company', 'fullAddress', ''));
-        dispatch(arrayPush('company', 'locations', location));
+        dispatch(change(formName, 'fullAddress', ''));
+        dispatch(arrayPush(formName, 'locations', location));
       }
     }
 

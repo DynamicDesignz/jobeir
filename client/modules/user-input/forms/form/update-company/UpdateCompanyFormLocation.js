@@ -12,7 +12,7 @@ import Autocomplete from '../../../autocomplete/Autocomplete';
 class CompanyFormStepThree extends Component {
   formSubmit = (data: {}): void => {
     this.props.dispatch(
-      updateCompany(data, this.props.companies.activeCompany._id)
+      updateCompany(data, this.props.companies.activeCompany._id),
     );
   };
 
@@ -36,7 +36,7 @@ class CompanyFormStepThree extends Component {
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
           />
-          <Autocomplete id="fullAddress" />
+          <Autocomplete formName="company-edit" id="fullAddress" />
         </AutocompleteContainer>
         {locations.length > 0 && (
           <MultipleLocations>
@@ -52,7 +52,7 @@ class CompanyFormStepThree extends Component {
           style={{
             display: 'flex',
             justifyContent: 'flex-end',
-            marginTop: '50px'
+            marginTop: '50px',
           }}
         >
           <Field
@@ -71,13 +71,13 @@ const selector = formValueSelector('company-edit');
 
 const mapStateToProps = state => ({
   companies: state.account.companies,
-  locations: selector(state, 'locations') || []
+  locations: selector(state, 'locations') || [],
 });
 
 CompanyFormStepThree = reduxForm({
   form: 'company-edit',
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true
+  forceUnregisterOnUnmount: true,
 })(CompanyFormStepThree);
 
 export default connect(mapStateToProps)(CompanyFormStepThree);
@@ -89,38 +89,3 @@ const MultipleLocations = styled.h3`
 `;
 
 const AutocompleteContainer = styled.div`position: relative;`;
-
-const InputGoogleAutocompleteList = styled.ul`
-  opacity: ${props =>
-    (props.active && props.show) || props.isSearching ? 1 : 0};
-  position: absolute;
-  background: #fff;
-  width: 100%;
-  top: calc(100% - 4px);
-  border-radius: 3px;
-  z-index: 1;
-  box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
-    0 8px 16px rgba(27, 39, 51, 0.08);
-`;
-
-const InputGoogleAutocompleteLogo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-  text-align: center;
-
-  img {
-    height: 18px;
-  }
-`;
-
-const InputGoogleAutocompleteSearching = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 52px;
-  text-align: center;
-  border-bottom: 1px solid #e8e8e8;
-  color: #7e7c7c;
-`;
