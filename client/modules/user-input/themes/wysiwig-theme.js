@@ -1,25 +1,35 @@
 export const wysiwig = {
-  options: ['inline', 'list', 'emoji', 'blockType'],
+  options: ['inline', 'link', 'list', 'emoji', 'blockType'],
   inline: {
     inDropdown: false,
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['bold', 'italic']
+    options: ['bold', 'italic'],
   },
   list: {
     inDropdown: false,
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['unordered', 'ordered']
+    options: ['unordered', 'ordered'],
+  },
+  link: {
+    inDropdown: false,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    dropdownClassName: undefined,
+    showOpenOptionOnHover: true,
+    defaultTargetOption: '_blank',
+    options: ['link'],
   },
   blockType: {
     inDropdown: true,
     options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],
     className: undefined,
     component: undefined,
-    dropdownClassName: undefined
+    dropdownClassName: undefined,
   },
   emoji: {
     className: undefined,
@@ -155,7 +165,7 @@ export const wysiwig = {
       '📅',
       '✅',
       '❎',
-      '💯'
-    ]
-  }
+      '💯',
+    ],
+  },
 };

@@ -1,13 +1,13 @@
 // @flow
 export default function(minLength: number): Function {
   return function validateLength(value: { blocks: Array<{}> }): string {
-    if (!value) {
+    if (!value || !value.blocks) {
       return '';
     }
 
     const totalLength: number = value.blocks.reduce(
       (prev: number, curr) => prev + curr.text.length,
-      0
+      0,
     );
     const thisManyMoreChars: number = minLength - totalLength;
 

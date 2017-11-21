@@ -130,6 +130,13 @@ const EditorContainer = styled.div`
   margin: 0 auto 1rem;
   border-color: ${props => (props.showError ? '#f73c3c' : '')};
 
+  .rdw-link-decorator-wrapper {
+    a {
+      color: ${props => props.theme.colors.purple};
+      text-decoration-skip: ink;
+    }
+  }
+
   ${media.tablet`
     min-height: 200px;
     padding: 14px;
@@ -176,14 +183,18 @@ const EditorContainer = styled.div`
   .rdw-dropdown-optionwrapper {
     position: absolute;
     list-style: none;
-    border-radius: 2px;
     background: #fff;
-    box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.16),
-      0 8px 16px rgba(27, 39, 51, 0.08);
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.22),
+      0 8px 16px rgba(27, 39, 51, 0.14);
 
     .rdw-dropdownoption-default {
       padding: 5px 8px;
       border-bottom: 1px solid #f1f0f0;
+
+      &:hover {
+        background: #f9f9f9;
+      }
 
       &:first-child {
         padding-top: 10px;
@@ -232,6 +243,103 @@ const EditorContainer = styled.div`
 
   .public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR {
     margin-left: 1.25em;
+  }
+
+  .rdw-link-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .rdw-link-dropdown {
+    width: 50px;
+  }
+  .rdw-link-dropdownOption {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .rdw-link-dropdownPlaceholder {
+    margin-left: 8px;
+  }
+  .rdw-link-modal {
+    position: absolute;
+    top: 35px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 235px;
+    height: 205px;
+    padding: 15px;
+    z-index: 100;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(99, 114, 130, 0.22),
+      0 8px 16px rgba(27, 39, 51, 0.14);
+  }
+  .rdw-link-modal-label {
+    font-size: 15px;
+  }
+  .rdw-link-modal-input {
+    margin-top: 5px;
+    border-radius: 3px;
+    border: solid 1px #babbbb;
+    height: 30px;
+    margin-bottom: 15px;
+    padding: 2px 5px;
+  }
+  .rdw-link-modal-input:focus {
+    outline: none;
+  }
+  .rdw-link-modal-target-option {
+    margin-bottom: 10px;
+    display: none;
+  }
+  .rdw-link-modal-target-option > span {
+    margin-left: 5px;
+  }
+
+  .rdw-link-modal-buttonsection {
+    margin-top: 5px;
+  }
+  .rdw-link-modal-btn {
+    margin-right: 2%;
+    width: 49%;
+    height: 32px;
+    border: 1px solid #f1f1f1;
+    border-radius: 2px;
+    cursor: pointer;
+    background: white;
+    text-transform: capitalize;
+
+    &:first-child {
+      background: ${props => props.theme.colors.purple};
+      color: #fff;
+      border: 1px solid ${props => props.theme.colors.purple};
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .rdw-link-modal-btn:hover {
+    box-shadow: 1px 1px 0px #bfbdbd;
+  }
+
+  .rdw-link-modal-btn:active {
+    box-shadow: 1px 1px 0px #bfbdbd inset;
+  }
+  .rdw-link-modal-btn:focus {
+    outline: none !important;
+  }
+  .rdw-link-modal-btn:disabled {
+    background: #ece9e9;
+    border: 1px solid #ece9e9;
+  }
+  .rdw-link-dropdownoption {
+    height: 40px;
+    display: flex;
+    justify-content: center;
   }
 
   .rdw-emoji-wrapper {

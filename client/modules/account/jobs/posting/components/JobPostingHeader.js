@@ -58,18 +58,18 @@ const JobPostingHeaderContainer = styled.div`
 `;
 
 const JobPostingHeaderCompanyLogo = styled.img`
-  height: 62px;
+  height: 72px;
 
   ${media.phablet`
-    height: 46px;
+    height: 48px;
   `};
 `;
 
 const JobPostingHeaderCompany = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 
   ${media.phablet`
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   `};
 `;
 

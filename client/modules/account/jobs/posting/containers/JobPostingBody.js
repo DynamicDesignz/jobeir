@@ -31,7 +31,7 @@ const JobPostingBodyContainer = styled.div`
   p {
     line-height: 32px;
     margin-bottom: 40px;
-    font-size: 20px;
+    font-size: 19px;
     color: rgba(0, 0, 0, 0.75);
     font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
@@ -48,11 +48,16 @@ const JobPostingBodyContainer = styled.div`
   }
 
   a {
-    color: rgba(0, 0, 0, 0.75);
+    color: ${props => props.theme.colors.purple};
     text-decoration-skip: ink;
     font-family: ${props => props.theme.fontFamily.tiempos};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+
+    &:hover,
+    &:visited {
+      color: ${props => props.theme.colors.purple};
+    }
   }
 
   img {
@@ -64,7 +69,7 @@ const JobPostingBodyContainer = styled.div`
   h5,
   h6 {
     font-weight: 800;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 
     ${media.tablet`
       margin-bottom: 15px;
@@ -77,21 +82,22 @@ const JobPostingBodyContainer = styled.div`
 
   h2 {
     font-weight: 800;
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 28px;
+    margin-bottom: 25px;
 
     ${media.phablet`
       font-size: 20px;
+      margin-bottom: 15px;
     `};
 
     ${media.phonePlus`
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     `};
   }
 
   h3 {
     font-weight: 800;
-    font-size: 20px;
+    font-size: 24px;
 
     ${media.phablet`
       font-size: 18px;
@@ -125,8 +131,8 @@ const JobPostingBodyContainer = styled.div`
     `};
 
     & > li {
-      margin-bottom: 16px;
-      font-size: 18px;
+      margin-bottom: 12px;
+      font-size: 19px;
       color: #2b2b2b;
 
       ${media.tablet`
