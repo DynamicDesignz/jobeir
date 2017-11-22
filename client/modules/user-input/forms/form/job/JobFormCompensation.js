@@ -79,11 +79,7 @@ class JobFormComponesation extends Component {
           )}
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
-          <Field
-            name="submitButton"
-            buttonText="Next"
-            component={SubmitButton}
-          />
+          <SubmitButton name="submitButton" buttonText="Next" />
         </FormFooter>
       </FormWrapper>
     );
@@ -101,6 +97,7 @@ const mapStateToProps = state => ({
 JobFormComponesation = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);

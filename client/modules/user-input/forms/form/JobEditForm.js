@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
 import FormWrapper from '../containers/FormWrapper';
 import FormRow from '../components/FormRow';
-import { email, required, wysiwygLength } from '../../validation';
+import { email, required, url, wysiwygLength } from '../../validation';
 import {
   Currency,
   Percentage,
@@ -195,6 +195,13 @@ class JobEditFrom extends Component {
                   />
                 </FormRow>
               )}
+              <Field
+                name="externalLink"
+                label="Is there a URL you'd like to link to?"
+                placeholder="https://example.com/careers/job-posting"
+                validate={[required, url]}
+                component={Text}
+              />
               <FieldArray
                 name="receivingEmails"
                 component={renderEmailFields}

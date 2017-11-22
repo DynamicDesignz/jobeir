@@ -10,7 +10,7 @@ import {
   SelectSearch,
   Text,
   Wysiwyg,
-  SubmitButton
+  SubmitButton,
 } from '../../../inputs/input';
 import { jobOptions } from '../../../options/';
 
@@ -54,11 +54,7 @@ class JobFormabout extends Component {
           component={Wysiwyg}
         />
         <FormFooter>
-          <Field
-            name="submitButton"
-            buttonText="Next"
-            component={SubmitButton}
-          />
+          <SubmitButton name="submitButton" buttonText="Next" />
         </FormFooter>
       </FormWrapper>
     );
@@ -67,12 +63,13 @@ class JobFormabout extends Component {
 
 const mapStateToProps = state => ({
   jobs: state.account.jobs,
-  activeCompany: state.account.companies.activeCompany
+  activeCompany: state.account.companies.activeCompany,
 });
 
 JobFormabout = reduxForm({
   form: 'job',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
 })(JobFormabout);
 
 export default connect(mapStateToProps)(JobFormabout);

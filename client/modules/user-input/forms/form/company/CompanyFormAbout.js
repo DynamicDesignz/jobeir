@@ -64,11 +64,10 @@ class CompanyFormStepOne extends Component {
           component={Textarea}
         />
         <FormFooter>
-          <Field
+          <SubmitButton
             name="submitButton"
             buttonText="Next"
             formErrors={companies.errors}
-            component={SubmitButton}
           />
         </FormFooter>
       </FormWrapper>
@@ -80,12 +79,12 @@ const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
   companies: state.account.companies,
-  companyName: selector(state, 'name')
+  companyName: selector(state, 'name'),
 });
 
 CompanyFormStepOne = reduxForm({
   form: 'company',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(CompanyFormStepOne);
 
 export default connect(mapStateToProps)(CompanyFormStepOne);

@@ -59,12 +59,11 @@ class CompanyFormStepThree extends Component {
         />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
-          <Field
+          <SubmitButton
             name="submitButton"
             buttonText="Next"
             disabled={locations.length === 0}
             isSubmitting={companies.isCreating}
-            component={SubmitButton}
           />
         </FormFooter>
       </FormWrapper>

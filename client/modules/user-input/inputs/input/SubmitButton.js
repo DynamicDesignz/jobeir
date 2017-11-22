@@ -11,7 +11,7 @@ export const SubmitButton = (props: {
   disabled: boolean,
   buttonText: string,
   isSubmitting: boolean,
-  formErrors: Array<{}>
+  formErrors: Array<{}>,
 }) => (
   <Button
     type="submit"

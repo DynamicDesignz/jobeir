@@ -44,6 +44,7 @@ export function* updateJobSaga(action) {
       action.payload.data,
     );
     yield put({ type: UPDATE_JOB_SUCCESS, payload });
+    window.scrollTo(0, 0);
     yield call(action.payload.showJobPReview);
   } catch (errors) {
     yield put({ type: UPDATE_JOB_FAILURE, errors });

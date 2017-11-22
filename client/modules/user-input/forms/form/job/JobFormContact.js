@@ -79,11 +79,10 @@ class JobFormComponesation extends Component {
         <FieldArray name="receivingEmails" component={renderEmailFields} />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
-          <Field
+          <SubmitButton
             name="submitButton"
-            buttonText="Create"
-            component={SubmitButton}
             isSubmitting={jobs.isCreating}
+            buttonText="Create"
           />
         </FormFooter>
       </FormWrapper>
@@ -94,12 +93,13 @@ class JobFormComponesation extends Component {
 const mapStateToProps = state => ({
   jobs: state.account.jobs,
   auth: state.session.auth,
-  user: state.session.user
+  user: state.session.user,
 });
 
 JobFormComponesation = reduxForm({
   form: 'job',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
 })(JobFormComponesation);
 
 export default connect(mapStateToProps)(JobFormComponesation);

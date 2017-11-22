@@ -56,10 +56,9 @@ class CompanyLogo extends Component {
         </UploadedList>
         <FormFooter>
           <BackButton action={this.handleExit} buttonText="Exit" />
-          <Field
+          <SubmitButton
             name="submitButton"
             buttonText="Next"
-            component={SubmitButton}
             disabled={!companies.successfulUpload}
           />
         </FormFooter>
@@ -69,12 +68,12 @@ class CompanyLogo extends Component {
 }
 
 const mapStateToProps = state => ({
-  companies: state.account.companies
+  companies: state.account.companies,
 });
 
 CompanyLogo = reduxForm({
   form: 'company-upload',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(CompanyLogo);
 
 export default connect(mapStateToProps)(CompanyLogo);

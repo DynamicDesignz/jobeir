@@ -19,9 +19,9 @@ class JobFormType extends Component {
           street_number: string,
           route: string,
           locality: string,
-          country: string
-        }
-      }>
+          country: string,
+        },
+      }>,
     } = companies.created.find(comp => comp._id === params.companyId);
 
     return (
@@ -32,14 +32,14 @@ class JobFormType extends Component {
           street_number,
           route,
           locality,
-          country
+          country,
         } = location.address;
         const noUnit = `${street_number} ${route}, ${locality}, ${country}`;
         const completeAddress = unit ? `${unit} - ${noUnit}` : noUnit;
 
         return {
           name: completeAddress,
-          value: location
+          value: location,
         };
       })
     );
@@ -87,11 +87,7 @@ class JobFormType extends Component {
         />
         <FormFooter>
           <BackButton action={prevPage} buttonText="Back" />
-          <Field
-            name="submitButton"
-            buttonText="Next"
-            component={SubmitButton}
-          />
+          <SubmitButton name="submitButton" buttonText="Next" />
         </FormFooter>
       </FormWrapper>
     );
@@ -101,13 +97,13 @@ class JobFormType extends Component {
 const mapStateToProps = state => ({
   companies: state.account.companies,
   jobs: state.account.jobs,
-  auth: state.session.auth
+  auth: state.session.auth,
 });
 
 JobFormType = reduxForm({
   form: 'job',
   destroyOnUnmount: false,
-  keepDirtyOnReinitialize: true
+  forceUnregisterOnUnmount: true,
 })(JobFormType);
 
 export default connect(mapStateToProps)(JobFormType);

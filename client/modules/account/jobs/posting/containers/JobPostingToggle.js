@@ -44,6 +44,7 @@ class JobPostingToggle extends Component {
         descriptionRaw,
         employmentType,
         equity,
+        externalLink,
         remote,
         role,
         salary,
@@ -60,6 +61,7 @@ class JobPostingToggle extends Component {
         min: equity.min,
         offer: equity.offer,
       },
+      externalLink,
       remote,
       role,
       salary: {
