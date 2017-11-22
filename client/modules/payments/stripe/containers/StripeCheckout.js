@@ -93,7 +93,7 @@ class StripeCheckout extends Component {
   render() {
     const { showExistingCard } = this.state;
     const { company, job } = this.props;
-    const hasExistingCard = company.billing.stripe;
+    const hasExistingCard = company.billing && company.billing.stripe;
 
     return (
       <ThemeProvider theme={SripeTheme}>
