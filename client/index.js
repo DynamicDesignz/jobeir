@@ -14,6 +14,13 @@ import App from './modules/app/containers/App';
 // Google Analytics
 ReactGA.initialize('UA-59445007-4');
 
+// Intercom
+if (typeof window.Intercom !== undefined) {
+  window.Intercom('boot', {
+    app_id: 'usylxaq5',
+  });
+}
+
 // Initialize Servicie Worker register code
 initServiceWorker();
 
@@ -29,7 +36,7 @@ const renderApp = () =>
     <AppContainer>
       <App {...{ store, history }} />
     </AppContainer>,
-    mountApp
+    mountApp,
   );
 
 // For hot reloading of react components
