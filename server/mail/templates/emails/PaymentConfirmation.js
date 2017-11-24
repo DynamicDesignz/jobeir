@@ -22,7 +22,7 @@ export default props => (
         {props.options.job.title}
       </EmailRow>
       <EmailRow>
-        <strong>Authorized</strong> <br />
+        <strong>Completed by</strong> <br />
         {props.options.user.firstName} {props.options.user.lastName} ({props.options.user.email})
       </EmailRow>
       <EmptySpace />
@@ -30,9 +30,8 @@ export default props => (
         Thank you for choosing Jobeir to help build your team!
       </EmailRow>
       <EmailRow>
-        Your job listing will be activated and listed within the next 24 hours.
-        Each job postings stays active for 30 days. Our goal is to help you find
-        the best talent.
+        Your job posting has been published and is now viewable to all potential
+        applicants. Each job postings stays active for 30 days.
       </EmailRow>
       <EmailRow>
         Thanks,

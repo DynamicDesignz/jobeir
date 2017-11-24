@@ -75,8 +75,6 @@ export const createJob = async (req, res) => {
     },
   }).save();
 
-  console.log(job);
-
   if (!job) throw Error(err.ERROR_CREATING_JOB);
 
   // Add the company to the current user

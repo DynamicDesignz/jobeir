@@ -13,7 +13,7 @@ import { hideModal } from '../../../modal/ducks';
 class StripeCheckoutForm extends Component {
   state = {
     error: undefined,
-    isPaying: false
+    isPaying: false,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -35,15 +35,17 @@ class StripeCheckoutForm extends Component {
       job,
       stripe,
       stripeForm,
-      user
+      user,
     } = this.props;
 
     if (!stripeForm) {
+      this.setState({ creatingToken: false });
+
       return this.setState({
         error: {
           type: 'stripeForm',
-          message: 'Please complete all missing fields'
-        }
+          message: 'Please complete all missing fields',
+        },
       });
     }
     // Gather additional customer data we may have collected in our form.
@@ -53,14 +55,14 @@ class StripeCheckoutForm extends Component {
       address_line1: stripeForm.address ? stripeForm.address : undefined,
       address_city: stripeForm.city ? stripeForm.city : undefined,
       address_state: stripeForm.state ? stripeForm.state : undefined,
-      address_zip: stripeForm.zip ? stripeForm.zip : undefined
+      address_zip: stripeForm.zip ? stripeForm.zip : undefined,
     };
 
     return stripe
       .createToken(stripe.elements[0], additionalData)
       .then(payload => {
         if (payload.error) {
-          return this.setState({ error: payload.error });
+          return this.setState({ creatingToken: false, error: payload.error });
         }
 
         this.setState({ creatingToken: false, error: undefined });
@@ -69,8 +71,8 @@ class StripeCheckoutForm extends Component {
             activeCompany,
             job,
             token: payload.token,
-            user
-          })
+            user,
+          }),
         );
       });
   };
@@ -102,9 +104,9 @@ export default injectStripe(
       email: state.session.user.email,
       _id: state.session.user._id,
       firstName: state.session.user.firstName,
-      lastName: state.session.user.lastName
-    }
-  }))(StripeCheckoutForm)
+      lastName: state.session.user.lastName,
+    },
+  }))(StripeCheckoutForm),
 );
 
 const CheckoutContainer = styled.div`
