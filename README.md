@@ -22,7 +22,6 @@ cd jobeir
 yarn
 yarn start
 ```
-Requires an instance of MongoDB running locally
 
 ### Missing Configuration
 
@@ -37,6 +36,8 @@ const config = {
 };
 
 export default config;
+
+and a `.env` file in the root of the project.
 ```
 
 ### Running Tests and Prettier
