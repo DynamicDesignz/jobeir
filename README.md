@@ -4,6 +4,10 @@
 
 <img src="https://raw.githubusercontent.com/brotzky/jobeir/master/design/images/colored-spheres.png" width="350px" alt="Jobeir Color Spheres" />
  
+
+# Jobeir
+Find the best jobs at the best tech companies. At Jobeir we want you to grow your career with the leading employers in the tech industry. Search through and find the best jobs in the tech industry today.
+
 <br/>
 <a href="https://jobeir.com">https://jobeir.com</a>
 
@@ -15,6 +19,7 @@
 [![Build Status](https://travis-ci.org/brotzky/jobeir.svg?branch=master)](https://travis-ci.org/brotzky/jobeir)
 
 ## Getting Started
+This is the web app for <a href="https://jobeir.com">https://jobeir.com</a>. It is a isomorphic React application.
 
 ```
 https://github.com/brotzky/jobeir.git
@@ -22,7 +27,6 @@ cd jobeir
 yarn
 yarn start
 ```
-Requires an instance of MongoDB running locally
 
 ### Missing Configuration
 
@@ -37,6 +41,8 @@ const config = {
 };
 
 export default config;
+
+and a `.env` file in the root of the project.
 ```
 
 ### Running Tests and Prettier
