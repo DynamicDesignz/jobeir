@@ -54,11 +54,15 @@ const JobsListItem = (props: {
           {', '}
           {job.location.address.administrative_area_level_1}
         </div>
-        <JobsDot>·</JobsDot>
-        <HideOnMobile>
-          ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
-        </HideOnMobile>
-
+        {job.salary.min > 0 &&
+          job.salary.max > 0 && (
+            <span>
+              <JobsDot>·</JobsDot>
+              <HideOnMobile>
+                ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
+              </HideOnMobile>
+            </span>
+          )}
         <HideOnMobile>
           {job.published && (
             <span>

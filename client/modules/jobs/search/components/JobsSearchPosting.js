@@ -35,6 +35,7 @@ const JobsSearchPosting = (props: {
   },
 }) => {
   const { posting } = props;
+  const includesSalary = posting.salary.min > 0 && posting.salary.max > 0;
 
   return (
     <FadeIn>
@@ -59,11 +60,20 @@ const JobsSearchPosting = (props: {
           <JobsSearchPostingCompanyProduct>
             {trunc(posting.company.product, 175)}
           </JobsSearchPostingCompanyProduct>
-          <JobsSearchPostingBottom>
-            <JobsSearchPostingType>
-              {posting.employmentType} · ${posting.salary.max / 1000}K {' - '}${posting.salary.min / 1000}K
+          <JobsSearchPostingBottom includesSalary={includesSalary}>
+            <JobsSearchPostingType includesSalary={includesSalary}>
+              {posting.employmentType}
+              {includesSalary && (
+                <span>
+                  {' '}
+                  · ${posting.salary.min / 1000}K - ${posting.salary.max / 1000}K
+                </span>
+              )}
             </JobsSearchPostingType>
-            <span>{moment(posting.published).fromNow()}</span>
+            <span>
+              {includesSalary ? '' : ' · posted '}
+              {moment(posting.published).fromNow()}
+            </span>
           </JobsSearchPostingBottom>
         </StyledLink>
       </JobsSearchPostingContainer>
@@ -111,7 +121,8 @@ const JobsSearchPostingTop = styled.div`
 
 const JobsSearchPostingBottom = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props =>
+    props.includesSalary ? 'space-between' : 'flex-start'};
   color: #545454;
 
   ${media.phablet`
@@ -140,7 +151,10 @@ const JobsSearchPostingSubTitle = styled.div`
   `};
 `;
 
-const JobsSearchPostingType = styled.div`display: flex;`;
+const JobsSearchPostingType = styled.div`
+  display: flex;
+  ${props => (props.includesSalary ? `` : `margin-right: 4px;`)};
+`;
 
 const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.6;

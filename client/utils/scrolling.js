@@ -22,7 +22,7 @@ function scrollToTop(scrollDuration) {
     if (window.scrollY === 0) return;
     window.scrollTo(
       0,
-      Math.round(cosParameter + cosParameter * Math.cos(scrollCount))
+      Math.round(cosParameter + cosParameter * Math.cos(scrollCount)),
     );
     oldTimestamp = newTimestamp;
     window.requestAnimationFrame(step);
@@ -36,7 +36,7 @@ export const goToTopOfPage = () => {
   const isOnCreateFlow: boolean = window.location.pathname.includes('/create/');
 
   if (isOnPostingPage) return window.scrollTo(0, 0);
-  if (isOnCreateFlow) return scrollToTop(400);
+  if (isOnCreateFlow) return scrollToTop(300);
   if (shouldGoToTop) return window.scrollTo(0, 0);
 
   return null;
