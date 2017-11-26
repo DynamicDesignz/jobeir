@@ -30,7 +30,7 @@ const JobPostingHeader = (props: { activePosting: {}, hideLogo: boolean }) => {
               {activePosting.location.address.country}
             </JobPostingHeaderLocation>
             <JobPostingHeaderDate>
-              {moment(activePosting.createdAt).format('MMMM Do, YYYY')}
+              {moment(activePosting.published).format('MMMM Do, YYYY')}
             </JobPostingHeaderDate>
           </FadeIn>
         ) : (

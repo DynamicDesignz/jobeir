@@ -42,22 +42,23 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
               <ListItem>
                 <ListHeader>Reach top tech talent</ListHeader>
                 <ListSubheader>
-                  Lorem Khaled Ipsum is a major key to success. They never said
-                  winning was easy.
+                  Job postings are also shared amongst all our social media
+                  channels and developer pools.
                 </ListSubheader>
               </ListItem>
               <ListItem>
                 <ListHeader>Show case your company amongst the best</ListHeader>
                 <ListSubheader>
-                  Lorem Khaled Ipsum is a major key to success. They never said
-                  winning was easy.
+                  We work with the best companies in tech to help them find the
+                  talent they need. Gain access to a high quality talent pool.
                 </ListSubheader>
               </ListItem>
               <ListItem>
-                <ListHeader>30 days of active listing</ListHeader>
+                <ListHeader>45 days of active listing, minimum.</ListHeader>
                 <ListSubheader>
-                  Lorem Khaled Ipsum is a major key to success. They never said
-                  winning was easy.
+                  If you're not happy with the results we'll gladly extend your
+                  posting length. Our goal is to find you the best talent
+                  possible.
                 </ListSubheader>
               </ListItem>
             </List>
@@ -122,7 +123,7 @@ const PricingIncludesContent = styled.div`
 const List = styled.ul`list-style: none;`;
 
 const ListItem = styled.ul`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   &:last-child {
     margin-bottom: 0;
   }

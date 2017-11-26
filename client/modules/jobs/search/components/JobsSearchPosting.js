@@ -58,7 +58,7 @@ const JobsSearchPosting = (props: {
             </div>
           </JobsSearchPostingTop>
           <JobsSearchPostingCompanyProduct>
-            {trunc(posting.company.product, 175)}
+            {trunc(posting.company.product, 250)}
           </JobsSearchPostingCompanyProduct>
           <JobsSearchPostingBottom includesSalary={includesSalary}>
             <JobsSearchPostingType includesSalary={includesSalary}>

@@ -55,19 +55,3 @@ const PublishButton = styled.button`
     font-size: 12px;
   `};
 `;
-const ActivePill = styled.div`
-  width: 80px;
-  font-size: 12px;
-  text-transform: uppercase;
-  border-radius: 30px;
-  color: ${props => props.theme.colors.green};
-  background: transparent;
-  border: 1px solid ${props => props.theme.colors.green};
-  padding: 4px 8px;
-
-  ${media.phablet`
-    width: 66px;
-    padding: 2px 6px;
-    font-size: 12px;
-  `};
-`;

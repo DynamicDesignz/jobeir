@@ -13,7 +13,7 @@ const JobsPostingReturn = (props: { query: string, externalLink: string }) => (
         <StyledChevronLeft />Return to Job Search
       </StyledLink>
       <StyledExternalLink
-        href={`https://${props.externalLink}?ref=jobeir`}
+        href={`${props.externalLink}?ref=jobeir`}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -35,11 +35,11 @@ const JobsPostingReturnContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   max-width: 744px;
-  margin: 20px auto 30px;
+  margin: 20px auto 40px;
   padding: 30px 24px;
 
   ${media.phablet`
-    margin: 5px auto;
+    margin: 5px auto 20px;
     padding: 10px 24px;
   `};
 `;
