@@ -25,6 +25,7 @@ class Input extends Component {
     dispatch(change('search', 'location', ''));
     dispatch(change('search', 'lat', ''));
     dispatch(change('search', 'lng', ''));
+    dispatch(change('search', 'coordinates', ''));
   };
 
   render() {
