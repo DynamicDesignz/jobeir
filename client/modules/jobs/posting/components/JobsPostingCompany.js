@@ -19,12 +19,13 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
           <JobsPostingCompanyText>
             {activePosting.company.product}
           </JobsPostingCompanyText>
+
           <JobsPostingCompanyLink
             href={`${activePosting.externalLink}?ref=jobeir`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Apply
+            Apply to {activePosting.company.displayName}
           </JobsPostingCompanyLink>
         </FadeIn>
       )}
@@ -43,7 +44,6 @@ const JobsPostingCompanyContainer = styled.div`
     margin: 30px auto;
   `};
 `;
-
 const JobsPostingCompanyHeader = styled.h3`
   font-size: 38px;
   font-weight: 900;
@@ -83,16 +83,15 @@ const JobsPostingCompanyText = styled.p`
 
 const JobsPostingCompanyLink = styled.a`
   position: relative;
-  top: 34px;
-  margin: 60px auto 120px;
-  width: 80px;
-  height: 80px;
-  font-size: 16px;
+  margin: 70px auto 140px;
+  width: 100%;
+  height: 60px;
+  font-size: 18px;
   font-weight: 600;
-  color: ${props => props.theme.colors.purple};
+  color: #fff;
   background: ${props => props.theme.colors.purple};
   border: 2px solid ${props => props.theme.colors.purple};
-  border-radius: 50%;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -106,10 +105,9 @@ const JobsPostingCompanyLink = styled.a`
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.22);
   }
 
-  background: transparent;
-  border: 2px solid ${props => props.theme.colors.purple};
-
   ${media.tablet`
-    margin: 20px auto 60px;
+    font-size: 16px;
+    height: 48px
+    margin: 40px auto 80px;
   `};
 `;
