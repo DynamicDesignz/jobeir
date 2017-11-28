@@ -206,6 +206,12 @@ const FeaturedJobImage = styled.img`
   `};
 
   ${media.phonePlus`
+    width: 99%;
+    top: -70px;
+    left: 0%;
+  `};
+
+  ${media.phone`
     width: 130%;
     top: -70px;
     left: -15%
