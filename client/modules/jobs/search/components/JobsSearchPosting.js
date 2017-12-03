@@ -59,7 +59,7 @@ const JobsSearchPosting = (props: {
             <CompanyLogo src={posting.company.logo} />
           </JobsSearchPostingTop>
           <JobsSearchPostingCompanyProduct>
-            {trunc(posting.company.product, 250)}
+            {trunc(posting.company.product, 150)}
           </JobsSearchPostingCompanyProduct>
           <JobsSearchPostingBottom includesSalary={includesSalary}>
             <JobsSearchPostingType includesSalary={includesSalary}>
