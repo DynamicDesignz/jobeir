@@ -29,7 +29,7 @@ export default {
     },
   },
   inputWrapper: {
-    marginBottom: '30px',
+    marginBottom: '20px',
   },
   error: {
     color: '#f73c3c',
@@ -45,7 +45,7 @@ export default {
     marginBottom: '18px',
     fontSize: '16px',
     fontWeight: '600',
-    color: '#898989',
+    color: 'rgba(0,0,0,0.65)',
   },
   select: {
     background: '#fff',

@@ -42,7 +42,7 @@ const JobsSearchPosting = (props: {
       <JobsSearchPostingContainer>
         <StyledLink to={`/jobs/${posting._id}`}>
           <JobsSearchPostingTop>
-            <div>
+            <JobsSearchPostingText>
               <JobsSearchPostingTitle>{posting.title}</JobsSearchPostingTitle>
               <JobsSearchPostingSubTitle>
                 <span>
@@ -55,7 +55,8 @@ const JobsSearchPosting = (props: {
                   {posting.location.address.country}
                 </span>
               </JobsSearchPostingSubTitle>
-            </div>
+            </JobsSearchPostingText>
+            <CompanyLogo src={posting.company.logo} />
           </JobsSearchPostingTop>
           <JobsSearchPostingCompanyProduct>
             {trunc(posting.company.product, 250)}
@@ -87,35 +88,80 @@ const JobsSearchPostingContainer = styled.div`
   position: relative;
   margin: 0 auto;
   background: #fff;
-  margin-bottom: 46px;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  &::after {
+    pointer-events: none;
+    opacity: 0;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.08);
+    transition: opacity 200ms ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
 
   ${media.phablet`
-    margin-bottom: 34px;
+    margin-bottom: 12px;
   `};
 `;
 
 const StyledLink = styled(Link)`
+  display: block;
   height: 100%;
   width: 100%;
+  padding: 26px 34px 30px;
   cursor: pointer;
   text-decoration: none;
   color: ${props => props.theme.colors.black};
+
+  ${media.phablet`
+    padding: 20px;
+  `};
+`;
+
+const CompanyLogo = styled.img`
+  max-width: 100px;
+  max-height: 40px;
+
+  ${media.phablet`
+    order: 1;
+    margin-bottom: 10px;
+  `};
 `;
 
 const Purple = styled.span`color: ${props => props.theme.colors.purple};`;
 
 const JobsSearchPostingTop = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 
   ${media.phablet`
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    flex-direction: column;
   `};
 
   ${media.phonePlus`
-    margin-bottom: 2px;
+    margin-bottom: 8px;
+  `};
+`;
+
+const JobsSearchPostingText = styled.div`
+  ${media.phablet`
+    order: 2;
   `};
 `;
 
@@ -123,7 +169,7 @@ const JobsSearchPostingBottom = styled.div`
   display: flex;
   justify-content: ${props =>
     props.includesSalary ? 'space-between' : 'flex-start'};
-  color: #545454;
+  color: ${props => props.theme.colors.black};
 
   ${media.phablet`
     font-size: 14px;
@@ -133,12 +179,17 @@ const JobsSearchPostingBottom = styled.div`
 const JobsSearchPostingTitle = styled.h2`
   font-size: 28px;
   font-weight: 900;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   font-family: ${props => props.theme.fontFamily.tiempos};
 
   ${media.tablet`
     font-size: 25px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+  `};
+
+  ${media.phonePlus`
+    font-size: 22px;
+    margin-bottom: 8px;
   `};
 `;
 
@@ -158,11 +209,11 @@ const JobsSearchPostingType = styled.div`
 
 const JobsSearchPostingCompanyProduct = styled.p`
   line-height: 1.6;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   color: #5f5e5e;
 
   ${media.phablet`
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   `};
 `;

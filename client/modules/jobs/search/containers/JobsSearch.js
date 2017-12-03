@@ -228,8 +228,8 @@ class JobsSearch extends Component {
       <JobsSearchContainer>
         <AppHead title="Job Search Results" />
         <JobsSearchBackground>
-          <JobsSearchBackgroundGrey />
           <JobsSearchBackgroundWhite />
+          <JobsSearchBackgroundGrey />
         </JobsSearchBackground>
         <JobsSearchRow>
           <JobsSearchColumn margin>
@@ -308,10 +308,9 @@ const JobsSearchBackground = styled.div`
   `};
 `;
 
-const JobsSearchBackgroundGrey = styled.div`
+const JobsSearchBackgroundWhite = styled.div`
   flex: 0.77;
-  background: ${props => props.theme.colors.grey.bg};
-  border-right: 1px solid #eceaea;
+  background: #fff;
 
   ${media.retina`
     flex: 0.725;
@@ -322,7 +321,10 @@ const JobsSearchBackgroundGrey = styled.div`
   `};
 `;
 
-const JobsSearchBackgroundWhite = styled.div`flex: 1.25;`;
+const JobsSearchBackgroundGrey = styled.div`
+  flex: 1.25;
+  background: ${props => props.theme.colors.grey.bg};
+`;
 
 const JobsSearchRow = styled.div`
   display: flex;
@@ -331,6 +333,10 @@ const JobsSearchRow = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
+
+  ${media.tablet`
+    background: ${props => props.theme.colors.grey.bg};
+  `};
 `;
 
 const JobsSearchHeader = styled.div`
@@ -362,7 +368,7 @@ const JobsSearchHeaderText = styled.h2`
 const JobsSearchColumn = styled.div`
   position: relative;
   padding-top: 30px;
-  margin-right: ${props => (props.margin ? '120px' : '0px')};
+  margin-right: ${props => (props.margin ? '70px' : '0px')};
   flex: ${props => (props.wide ? '1.35' : '0.65')};
 
   ${media.hd`

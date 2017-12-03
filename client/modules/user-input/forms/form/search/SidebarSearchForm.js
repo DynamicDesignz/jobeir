@@ -151,7 +151,7 @@ class SidebarSearchForm extends Component {
         <Field
           name="title"
           label="Job Title"
-          placeholder="Any"
+          placeholder="Any job title"
           component={SelectInput}
           options={jobOptions}
           location={location}
@@ -161,7 +161,7 @@ class SidebarSearchForm extends Component {
         <Field
           name="location"
           label="Location"
-          placeholder="Any"
+          placeholder="Any location"
           component={Input}
           location={location}
           isMobileFilter={isMobileFilter}
@@ -237,22 +237,22 @@ const SearchInput = styled.input`
   background: transparent;
 
   ::-webkit-input-placeholder {
-    color: rgba(0, 0, 0, 0.85);
-    font-weight: 600;
+    color: #888;
+    font-weight: 400;
   }
   :-moz-placeholder {
-    color: rgba(0, 0, 0, 0.85);
-    font-weight: 600;
+    color: #888;
+    font-weight: 400;
     opacity: 1;
   }
   ::-moz-placeholder {
-    color: rgba(0, 0, 0, 0.85);
-    font-weight: 600;
+    color: #888;
+    font-weight: 400;
     opacity: 1;
   }
   :-ms-input-placeholder {
-    color: rgba(0, 0, 0, 0.85);
-    font-weight: 600;
+    color: #888;
+    font-weight: 400;
   }
 
   &:focus {
@@ -264,7 +264,7 @@ const SearchLabel = styled.label`
   display: block;
   font-size: 16px;
   font-weight: 600;
-  color: #898989;
+  color: #595959;
   margin-bottom: 3px;
 
   ${media.phablet`
@@ -344,7 +344,7 @@ const SelectContainer = styled.div`
     display: flex;
     align-items: center;
     bottom: 0;
-    color: rgba(0, 0, 0, 0.85);
+    color: #888888;
     left: 0;
     line-height: 1.5;
     padding-left: 0;
