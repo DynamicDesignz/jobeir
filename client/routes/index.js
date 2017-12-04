@@ -26,6 +26,7 @@ export function loadRoute(cb) {
 // if (process.env.ENV === 'development') {
 require('../modules/home/containers/Home');
 require('../modules/brand/components/Brand');
+require('../modules/company/containers/Company');
 require('../modules/contact-us/components/ContactUs');
 require('../modules/legal/privacy-policy/components/PrivacyPolicy');
 require('../modules/legal/terms-of-service/components/TermsOfService');
@@ -109,6 +110,18 @@ const routes = (
             );
           },
           'why-jobeir',
+        );
+      }}
+    />
+    <Route
+      path="/:companyName"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(null, require('../modules/company/containers/Company').default);
+          },
+          'company',
         );
       }}
     />

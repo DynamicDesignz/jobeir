@@ -39,6 +39,17 @@ const Html = (props: {
             ))}
         <style dangerouslySetInnerHTML={{ __html: css }} />
         <script
+          type="text/javascript"
+          src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js"
+          data-dojo-config="usePlainJson: true, isDebug: false"
+        />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us17.list-manage.com","uuid":"43ed406e5415ae6b83c977e4f","lid":"5bfa1e8b75"}) })`,
+          }}
+        />
+        <script
           dangerouslySetInnerHTML={{
             __html: `(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/usylxaq5';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()`,
           }}
