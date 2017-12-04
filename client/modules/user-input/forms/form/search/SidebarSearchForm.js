@@ -196,10 +196,10 @@ const SearchInputContainer = styled.div`
   flex-direction: column;
   padding: ${props =>
     props.isMobileFilter ? ' 0 0 10px 0' : '0 40px 15px 0px'};
-  margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '23px')};
+  margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '5px')};
 
   &:first-child {
-    margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '15px')};
+    margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '5px')};
   }
 `;
 
@@ -264,7 +264,7 @@ const SearchLabel = styled.label`
   display: block;
   font-size: 16px;
   font-weight: 600;
-  color: #595959;
+  color: rgba(0, 0, 0, 0.75);
   margin-bottom: 3px;
 
   ${media.phablet`

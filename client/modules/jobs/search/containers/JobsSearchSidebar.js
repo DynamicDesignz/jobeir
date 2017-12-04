@@ -11,7 +11,7 @@ import {
   jobTypeOptions,
   distanceOptions,
   companySizeOptions,
-  yesNoOptions
+  yesNoOptions,
 } from '../../../user-input/options';
 import sidebar from '../../../user-input/themes/sidebar-theme';
 import { Radio } from '../../../user-input/inputs/input';
@@ -43,7 +43,7 @@ class JobsSearchSidebar extends Component {
       eq: search.equity,
       d: search.distance,
       r: search.remote,
-      cs: search.companySize
+      cs: search.companySize,
     };
 
     // Removing false values from obj
@@ -62,9 +62,9 @@ class JobsSearchSidebar extends Component {
         <ThemeProvider theme={sidebar}>
           <div>
             <Field
-              name="employmentType"
-              label="Job Type"
-              options={jobTypeOptions}
+              name="remote"
+              label="Open to or is Remote"
+              options={yesNoOptions}
               type="circle"
               component={Radio}
             />
@@ -76,9 +76,9 @@ class JobsSearchSidebar extends Component {
               component={Radio}
             />
             <Field
-              name="remote"
-              label="Open to Remote"
-              options={yesNoOptions}
+              name="employmentType"
+              label="Job Type"
+              options={jobTypeOptions}
               type="circle"
               component={Radio}
             />
@@ -91,7 +91,7 @@ class JobsSearchSidebar extends Component {
             />
             <Field
               name="distance"
-              label="Distance radius"
+              label="Distance from location"
               options={distanceOptions}
               type="circle"
               component={Radio}
@@ -108,13 +108,13 @@ const mapStateToProps = state => ({
     state.routing.locationBeforeTransitions &&
     state.routing.locationBeforeTransitions.query,
   jobs: state.search.jobs,
-  search: (state.form.search && state.form.search.values) || {}
+  search: (state.form.search && state.form.search.values) || {},
 });
 
 JobsSearchSidebar = reduxForm({
   form: 'search',
   destroyOnUnmount: false,
-  enableReinitialize: true
+  enableReinitialize: true,
 })(JobsSearchSidebar);
 
 export default connect(mapStateToProps)(JobsSearchSidebar);

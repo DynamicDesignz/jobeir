@@ -310,7 +310,7 @@ const JobsSearchBackground = styled.div`
 `;
 
 const JobsSearchBackgroundWhite = styled.div`
-  flex: 0.77;
+  flex: 0.63;
   background: #fff;
 
   ${media.retina`
@@ -369,8 +369,8 @@ const JobsSearchHeaderText = styled.h2`
 const JobsSearchColumn = styled.div`
   position: relative;
   padding-top: 30px;
-  margin-right: ${props => (props.margin ? '40px' : '0px')};
-  flex: ${props => (props.wide ? '1.35' : '0.65')};
+  margin-right: ${props => (props.margin ? '70px' : '0px')};
+  flex: ${props => (props.wide ? '1.35' : '0.4')};
 
   ${media.hd`
     margin-right: ${props => (props.margin ? '70px' : '0px')};
