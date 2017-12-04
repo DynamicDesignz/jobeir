@@ -113,7 +113,7 @@ const routes = (
         );
       }}
     />
-    <Route
+    {/* <Route
       path="/:companyName"
       getComponent={(nextState, cb) => {
         require.ensure(
@@ -124,7 +124,7 @@ const routes = (
           'company',
         );
       }}
-    />
+    /> */}
     <Route
       path="/brand"
       getComponent={(nextState, cb) => {
