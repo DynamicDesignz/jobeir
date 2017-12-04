@@ -314,11 +314,11 @@ const JobsSearchBackgroundWhite = styled.div`
   background: #fff;
 
   ${media.retina`
-    flex: 0.725;
+    flex: 0.5;
   `};
 
   ${media.hd`
-    flex: 0.62;
+    flex: 0.45;
   `};
 `;
 
