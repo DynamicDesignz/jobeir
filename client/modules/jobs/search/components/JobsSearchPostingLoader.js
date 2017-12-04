@@ -21,6 +21,13 @@ const JobSearchPostingLoader = () => (
         <PlaceholderText2 />
         <PlaceholderText3 />
       </PlaceholderRow>
+      <PlaceholderRow>
+        <PlaceholderLogo />
+        <PlaceholderTitle />
+        <PlaceholderText1 />
+        <PlaceholderText2 />
+        <PlaceholderText3 />
+      </PlaceholderRow>
     </PlaceholderContainer>
   </Glow>
 );
@@ -36,9 +43,20 @@ const PlaceholderContainer = styled.div`
 const PlaceholderRow = styled.div`
   display: block;
   margin-bottom: 60px;
+  position: relative;
+  margin: 0 auto;
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  width: 100%;
+  height: 222px;
+  padding: 30px;
 
   ${media.tablet`
     margin-bottom: 44px;
+    height: 
   `};
 `;
 
@@ -60,7 +78,7 @@ const PlaceholderTitle = styled.div`
   margin-bottom: 30px;
 
   ${media.tablet`
-    width: 60%;
+    width: 80%;
     margin-bottom: 14px;
   `};
 `;
@@ -76,12 +94,12 @@ const PlaceholderText2 = styled.div`
   background: ${props => props.theme.colors.placeholder};
   width: 80%;
   height: 14px;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 `;
 
 const PlaceholderText3 = styled.div`
   background: ${props => props.theme.colors.placeholder};
-  width: 30%;
+  width: 40%;
   height: 14px;
   margin-bottom: 14px;
 `;

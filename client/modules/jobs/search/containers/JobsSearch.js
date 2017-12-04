@@ -98,7 +98,8 @@ class JobsSearch extends Component {
     const prev = this.withoutStartQuery(prevProps.query);
     const curr = this.withoutStartQuery(query);
 
-    if (prev !== curr && Object.keys(query).length) {
+    console.log({ prev, curr });
+    if (prev !== curr) {
       dispatch(filterSearchJobs(queryString.stringify(query)));
     }
   }
@@ -368,7 +369,7 @@ const JobsSearchHeaderText = styled.h2`
 const JobsSearchColumn = styled.div`
   position: relative;
   padding-top: 30px;
-  margin-right: ${props => (props.margin ? '70px' : '0px')};
+  margin-right: ${props => (props.margin ? '40px' : '0px')};
   flex: ${props => (props.wide ? '1.35' : '0.65')};
 
   ${media.hd`

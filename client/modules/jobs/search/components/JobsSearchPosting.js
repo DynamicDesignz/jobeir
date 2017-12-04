@@ -90,27 +90,8 @@ const JobsSearchPostingContainer = styled.div`
   background: #fff;
   margin-bottom: 20px;
   border-radius: 2px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
-
-  &::after {
-    pointer-events: none;
-    opacity: 0;
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.08);
-    transition: opacity 200ms ease;
-  }
-
-  &:hover::after {
-    opacity: 1;
-  }
 
   ${media.phablet`
     margin-bottom: 12px;
