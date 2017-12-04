@@ -213,7 +213,7 @@ const RadioCircleListInputContainer = styled.div`
   align-items: center;
   flex-basis: 100%;
   color: #797979;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 `;
 
 const RadioCircleListInput = styled.input`

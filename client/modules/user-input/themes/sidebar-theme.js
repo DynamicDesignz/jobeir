@@ -29,7 +29,7 @@ export default {
     },
   },
   inputWrapper: {
-    marginBottom: '10px',
+    marginBottom: '15px',
   },
   error: {
     color: '#f73c3c',
