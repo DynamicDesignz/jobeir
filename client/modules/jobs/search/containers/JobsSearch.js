@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import queryString from 'query-string';
 import InfiniteScroll from 'react-infinite-scroller';
 import throttle from 'lodash/throttle';
@@ -98,7 +98,6 @@ class JobsSearch extends Component {
     const prev = this.withoutStartQuery(prevProps.query);
     const curr = this.withoutStartQuery(query);
 
-    console.log({ prev, curr });
     if (prev !== curr) {
       dispatch(filterSearchJobs(queryString.stringify(query)));
     }
@@ -210,7 +209,8 @@ class JobsSearch extends Component {
       <JobSearchEmptyState>
         <StyledSearchIcon />
         <JobSearchEmptyStateHeader>
-          We couldn't find any job posts
+          We couldn't find any job posts.{' '}
+          <LinkToAllJobs to="/jobs"> See all jobs</LinkToAllJobs>
         </JobSearchEmptyStateHeader>
         <JobSearchEmptyStateHeader lessMargin>
           Be the first to{' '}
@@ -424,6 +424,14 @@ const StyledSearchIcon = styled(SearchIcon)`
     height: 40px;
     width: 40px;
   `};
+`;
+
+const LinkToAllJobs = styled(Link)`
+  color: ${props => props.theme.colors.purple};
+  background: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 18px;
 `;
 
 const LinkToCreate = styled.button`
