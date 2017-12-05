@@ -35,12 +35,14 @@ const JobsSearchPosting = (props: {
   },
 }) => {
   const { posting } = props;
-  const includesSalary = posting.salary.min > 0 && posting.salary.max > 0;
+  const includesSalary: boolean =
+    posting.salary.min > 0 && posting.salary.max > 0;
+  const jobId: string = posting.pathname || posting._id;
 
   return (
     <FadeIn>
       <JobsSearchPostingContainer>
-        <StyledLink to={`/jobs/${posting._id}`}>
+        <StyledLink to={`/jobs/${jobId}`}>
           <JobsSearchPostingTop>
             <JobsSearchPostingText>
               <JobsSearchPostingTitle>{posting.title}</JobsSearchPostingTitle>

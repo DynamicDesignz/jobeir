@@ -36,13 +36,14 @@ class JobsPosting extends Component {
 
   render() {
     const { params, posting } = this.props;
+    const jobId = posting.pathname || posting._id;
 
     return (
       <JobPostingContainer>
         <AppHead
           title={`${posting.title} at ${posting.company.displayName}`}
           description={posting.company.product}
-          path={`/jobs/${posting._id}`}
+          path={`/jobs/${jobId}`}
           contentType="article"
           published={posting.createdAt}
           updated={posting.updatedAt}

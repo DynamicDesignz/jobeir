@@ -22,6 +22,7 @@ const JobsListItem = (props: {
         administrative_area_level_1: string,
       },
     },
+    pathname: string,
     salary: {
       max: number,
       min: number,
@@ -31,18 +32,19 @@ const JobsListItem = (props: {
   },
 }) => {
   const { dispatch, job } = props;
+  const jobId = job.pathname || job._id;
 
   return (
     <div>
       <JobsMain>
         <JobsTitle
-          onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}
+          onClick={() => browserHistory.push(`/account/jobs/${jobId}`)}
         >
           {job.title}
         </JobsTitle>
         <JobsListItemState job={job} dispatch={dispatch} />
       </JobsMain>
-      <JobsSub onClick={() => browserHistory.push(`/account/jobs/${job._id}`)}>
+      <JobsSub onClick={() => browserHistory.push(`/account/jobs/${jobId}`)}>
         <div>
           <HideOnMobile>Created</HideOnMobile> {moment(job.createdAt).fromNow()}
           <HideOnMobile>

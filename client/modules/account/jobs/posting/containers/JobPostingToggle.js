@@ -100,7 +100,9 @@ const mapStateToProps = (state, ownProps) => ({
   jobs: state.account.jobs,
   activePosting:
     state.account.jobs.postings.find(
-      posting => posting._id === ownProps.params.jobId,
+      posting =>
+        posting._id === ownProps.params.jobId ||
+        posting.pathname === ownProps.params.jobId,
     ) || {},
 });
 

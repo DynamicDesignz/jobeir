@@ -1,5 +1,6 @@
 import Jobs from '../models/Jobs';
 import Company from '../models/Company';
+import uuid from 'uuid';
 import sanitizeHtml from 'sanitize-html';
 import * as err from '../errors/types';
 
@@ -9,6 +10,17 @@ const parsePercentage = value => {
   }
 };
 
+// dynamically building our query to support legacy paths
+const buildJobQuery = id => {
+  const query = {};
+  if (id.includes('-')) {
+    query.pathname = id;
+  } else {
+    query._id = id;
+  }
+
+  return query;
+};
 /**
  * Get all jobs
  * @param req
@@ -33,9 +45,9 @@ export const getJobs = async (req, res) => {
  * @returns void
  */
 export const getJob = async (req, res) => {
-  const posting = await Jobs.findOne({ _id: req.params.jobId }).select(
-    '-description',
-  );
+  const query = buildJobQuery(req.params.jobId);
+
+  const posting = await Jobs.findOne(query).select('-description');
 
   if (!posting) throw Error(err.ERROR_FINDING_JOBS);
 
@@ -50,6 +62,13 @@ export const getJob = async (req, res) => {
  */
 export const createJob = async (req, res) => {
   const { body, params } = req;
+  const id = uuid.v4().split('-')[0];
+  const pathTitle = body.title
+    .split(' ')
+    .join('-')
+    .toLowerCase();
+
+  const pathname = `${id}-${pathTitle}`;
 
   const job = await new Jobs({
     description: {
@@ -64,6 +83,7 @@ export const createJob = async (req, res) => {
     externalLink: body.externalLink,
     location: body.location,
     remote: body.remote,
+    pathname,
     salary: {
       max: (body.salary && body.salary.max) || 0,
       min: (body.salary && body.salary.min) || 0,
@@ -98,9 +118,10 @@ export const createJob = async (req, res) => {
  */
 export const updateJob = async (req, res) => {
   const values = req.body;
+  const query = buildJobQuery(req.params.jobId);
 
   const posting = await Jobs.findOneAndUpdate(
-    { _id: req.params.jobId },
+    query,
     { ...values },
     { new: true },
   );

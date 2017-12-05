@@ -85,6 +85,11 @@ const Jobs = new Schema({
       type: String,
     },
   },
+  pathname: {
+    type: String,
+    required: true,
+    index: true,
+  },
 });
 
 function autopopulate(next) {
