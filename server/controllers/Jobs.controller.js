@@ -141,14 +141,16 @@ export const updateJob = async (req, res) => {
  * @returns void
  */
 export const deleteJob = async (req, res) => {
-  const job = await Jobs.findOne({ _id: req.params.jobId });
+  const query = buildJobQuery(req.params.jobId);
 
-  if (!job) throw Error(err.ERROR_FINDING_JOB);
+  const posting = await Jobs.findOne(query);
 
-  job.remove();
+  if (!posting) throw Error(err.ERROR_FINDING_JOB);
+
+  posting.remove();
 
   res.status(200).send({
-    data: {},
+    data: { posting },
     errors: [],
   });
 };

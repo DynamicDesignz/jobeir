@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { browserHistory, Link } from 'react-router';
-// import { switchCompany } from '../../../user/ducks/';
+import { browserHistory } from 'react-router';
+import { deleteJob } from '../../../create/job/ducks';
 import { ChevronDown } from '../../../../../icons/';
 
 class JobPostingOptionsButton extends Component {
   state: {
-    showDropdown: boolean
+    showDropdown: boolean,
   };
 
   constructor(props) {
@@ -26,15 +26,15 @@ class JobPostingOptionsButton extends Component {
      * https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
      */
     this.mounted = true;
-    document.addEventListener('click', this.handleClickOutside, true);
+    document.addEventListener('click', this.handleOutsideClick, true);
   }
 
   componentWillUnmount() {
     this.mounted = false;
-    document.removeEventListener('click', this.handleClickOutside, true);
+    document.removeEventListener('click', this.handleOutsideClick, true);
   }
 
-  handleClickOutside = event => {
+  handleOutsideClick = event => {
     if (this.mounted) {
       const domNode = ReactDOM.findDOMNode(this);
 
@@ -47,7 +47,7 @@ class JobPostingOptionsButton extends Component {
   };
 
   render() {
-    const { companies, user } = this.props;
+    const { handleDeleteClick } = this.props;
 
     return (
       <ShellHeaderDropdown>
@@ -71,7 +71,7 @@ class JobPostingOptionsButton extends Component {
                 </JobPostingOptionsButtonListItem>
               </div>
               <JobPostingOptionsListItemHr />
-              <div onClick={() => browserHistory.push('/create/company/about')}>
+              <div onClick={handleDeleteClick}>
                 <JobPostingOptionsButtonListItem>
                   Delete
                 </JobPostingOptionsButtonListItem>
@@ -85,8 +85,8 @@ class JobPostingOptionsButton extends Component {
 }
 
 const mapStateToProps = state => ({
-  companies: state.account.companies,
-  user: state.session.user
+  activeCompany: state.account.companies.activeCompany,
+  user: state.session.user,
 });
 
 export default connect(mapStateToProps)(JobPostingOptionsButton);

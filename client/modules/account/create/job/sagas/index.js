@@ -84,7 +84,7 @@ export function* deleteJobSaga(action) {
       'DELETE',
       `/company/${action.payload.companyId}/jobs/${action.payload.jobId}`,
     );
-    yield put({ type: DELETE_JOB_SUCCESS, payload: action.payload.jobId });
+    yield put({ type: DELETE_JOB_SUCCESS, payload });
     yield call(redirectTo, `${action.payload.redirectPathname}`);
   } catch (errors) {
     yield put({ type: DELETE_JOB_FAILURE, errors });

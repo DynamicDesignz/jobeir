@@ -18,7 +18,7 @@ const JobPostingToggleControls = (props: {
           <JobPostingBackButton />
           <JobPostingToggleFlex>
             <PlainButton onClick={handleEditClick}>Edit</PlainButton>
-            <JobPostingOptionsButton />
+            <JobPostingOptionsButton handleDeleteClick={handleDeleteClick} />
           </JobPostingToggleFlex>
         </JobPostingToggleFlex>
       </JobPostingToggleControlsInlineBlock>
