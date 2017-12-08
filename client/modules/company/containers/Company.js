@@ -13,10 +13,9 @@ import CompanyJobList from '../components/CompanyJobList';
   {
     promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
       const state = getState();
-      const path = `/companies${req.originalUrl}`;
 
       if (shouldGetCompany(state)) {
-        return dispatch(serverGetCompany(path, req));
+        return dispatch(serverGetCompany(`/companies${req.originalUrl}`, req));
       }
     },
   },
@@ -39,9 +38,11 @@ class Company extends Component {
 
     return (
       <div>
-        <CompanyColumn>
-          <CompanyInfo company={company} />
-        </CompanyColumn>
+        <CompanyWhite>
+          <CompanyColumn>
+            <CompanyInfo company={company} />
+          </CompanyColumn>
+        </CompanyWhite>
         <CompanyGrey>
           <CompanyColumn>
             <CompanyJobList jobs={company.jobs} />
@@ -64,7 +65,13 @@ const CompanyColumn = styled.div`
   margin: 0 auto;
   padding: 0 24px;
 `;
+
+const CompanyWhite = styled.div`
+  border-bottom: 1px solid #eceaea;
+  padding: 50px 0 40px;
+`;
+
 const CompanyGrey = styled.div`
   background: #f9f8f7;
-  padding: 50px 0 80px;
+  padding: 40px 0 80px;
 `;

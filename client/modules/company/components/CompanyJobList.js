@@ -67,17 +67,13 @@ const LeftArrow = () => (
   </svg>
 );
 
-const List = styled.ul`
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 3px;
-  list-style: none;
-`;
+const List = styled.ul`list-style: none;`;
 
 const ListItem = styled.li`
-  &:not(:last-child) {
-    border-bottom: 1px solid #e5e5e5;
-  }
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  margin-bottom: 10px;
 `;
 
 const StyledLink = styled(Link)`

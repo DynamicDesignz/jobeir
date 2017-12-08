@@ -35,7 +35,7 @@ class JobsPosting extends Component {
   }
 
   render() {
-    const { params, posting } = this.props;
+    const { params, posting, query } = this.props;
     const jobId = posting.pathname || posting._id;
 
     return (
@@ -49,7 +49,7 @@ class JobsPosting extends Component {
           updated={posting.updatedAt}
           image={posting.company.logo}
         />
-        <JobsPostingReturn externalLink={posting.externalLink} />
+        <JobsPostingReturn externalLink={posting.externalLink} query={query} />
         <JobPosting hideLogo={false} activePosting={posting} params={params} />
         <JobsPostingCompany activePosting={posting} />
       </JobPostingContainer>
@@ -60,6 +60,10 @@ class JobsPosting extends Component {
 const mapStateToProps = state => ({
   posting: state.posting.posting,
   isLoaded: state.posting.isLoaded,
+  query:
+    (state.routing.locationBeforeTransitions &&
+      state.routing.locationBeforeTransitions.query) ||
+    {},
 });
 
 export default connect(mapStateToProps)(JobsPosting);

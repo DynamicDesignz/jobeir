@@ -6,25 +6,31 @@ import { media } from '../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import { ChevronLeft } from '../../../../icons/';
 
-const JobsPostingReturn = (props: { query: string, externalLink: string }) => (
-  <div>
-    <JobsPostingReturnContainer>
-      <StyledLink to={`/jobs?${props.query}`}>
-        <StyledChevronLeft />Return to Job Search
-      </StyledLink>
-      <StyledExternalLink
-        href={`${props.externalLink}?ref=jobeir`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Apply
-      </StyledExternalLink>
-    </JobsPostingReturnContainer>
-  </div>
-);
+const JobsPostingReturn = ({ query, searchQuery, externalLink }) => {
+  const link = query.r ? `/${query.r.toLowerCase()}` : `/jobs?${searchQuery}`;
+  const text = query.r ? `Return to ${query.r}` : 'Return to Job Search';
+
+  return (
+    <div>
+      <JobsPostingReturnContainer>
+        <StyledLink to={link}>
+          <StyledChevronLeft />
+          {text}
+        </StyledLink>
+        <StyledExternalLink
+          href={`${externalLink}?ref=jobeir`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Apply
+        </StyledExternalLink>
+      </JobsPostingReturnContainer>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
-  query: state.search.jobs.query,
+  searchQuery: state.search.jobs.query,
 });
 
 export default connect(mapStateToProps)(JobsPostingReturn);
