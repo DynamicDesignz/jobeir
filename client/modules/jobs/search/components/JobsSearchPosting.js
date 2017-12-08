@@ -115,8 +115,8 @@ const StyledLink = styled(Link)`
 `;
 
 const CompanyLogo = styled.img`
-  max-width: 100px;
-  max-height: 40px;
+  max-width: 120px;
+  max-height: 34px;
 
   ${media.phablet`
     order: 1;

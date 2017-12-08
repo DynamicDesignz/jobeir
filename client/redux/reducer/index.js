@@ -11,6 +11,7 @@ import { reducer as reduxAsyncConnect } from 'redux-connect';
 
 import auth from '../../modules/auth/ducks';
 import accountCompanies from '../../modules/account/create/company/ducks';
+import company from '../../modules/company/ducks';
 import intl from '../intl/';
 import accountJobs from '../../modules/account/create/job/ducks';
 import searchJobs from '../../modules/jobs/search/ducks';
@@ -22,21 +23,22 @@ import user from '../../modules/user/ducks';
 
 const session = combineReducers({
   auth,
-  user
+  user,
 });
 
 const account = combineReducers({
   jobs: accountJobs,
-  companies: accountCompanies
+  companies: accountCompanies,
 });
 
 const search = combineReducers({
-  jobs: searchJobs
+  jobs: searchJobs,
 });
 
 // creating an appReducer
 export const appReducer = combineReducers({
   account,
+  company,
   form,
   intl,
   location,
@@ -46,7 +48,7 @@ export const appReducer = combineReducers({
   reduxAsyncConnect,
   routing,
   search,
-  session
+  session,
 });
 
 /**

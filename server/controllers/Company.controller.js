@@ -4,6 +4,20 @@ import Invite from '../models/Invite';
 import sanitizeHtml from 'sanitize-html';
 import { send } from '../mail/mail';
 import * as err from '../errors/types';
+import mongoose from 'mongoose';
+
+// dynamically building our query to support legacy paths
+const buildCompanyQuery = id => {
+  const query = {};
+
+  if (mongoose.Types.ObjectId.isValid(id)) {
+    query._id = id;
+  } else {
+    query.name = id;
+  }
+
+  return query;
+};
 
 /**
  * Get all Companies
@@ -26,13 +40,13 @@ export const getCompanies = async (req, res) => {
  */
 export const checkCompany = async (req, res) => {
   const company = await Company.findOne({
-    name: req.params.name.toLowerCase()
+    name: req.params.name.toLowerCase(),
   });
   if (company) throw Error(err.ERROR_COMPANY_ALREADY_EXISTS);
 
   res.status(200).send({
     data: {},
-    errors: []
+    errors: [],
   });
 };
 
@@ -55,7 +69,7 @@ export const createCompany = async (req, res) => {
     website: sanitizeHtml(body.website),
     size: sanitizeHtml(body.size),
     product: sanitizeHtml(body.product),
-    phone: sanitizeHtml(body.phone)
+    phone: sanitizeHtml(body.phone),
   }).save();
 
   if (!company) throw Error(err.ERROR_CREATING_COMPANY);
@@ -67,14 +81,14 @@ export const createCompany = async (req, res) => {
   user.activeCompany = {
     _id: company._id,
     displayName: company.displayName,
-    name: company.name
+    name: company.name,
   };
 
   user.save();
 
   res.status(200).send({
     data: { company },
-    errors: []
+    errors: [],
   });
 };
 
@@ -90,14 +104,14 @@ export const updateCompany = async (req, res) => {
   const company = await Company.findOneAndUpdate(
     { _id: req.params.id },
     { ...values },
-    { new: true }
+    { new: true },
   );
 
   if (!company) throw Error(err.ERROR_UPDATING_COMPANY);
 
   res.status(200).send({
     data: { company },
-    errors: []
+    errors: [],
   });
 };
 
@@ -113,18 +127,18 @@ export const inviteCompanyMember = async (req, res) => {
   if (!user) throw Error(err.ERROR_FINDING_USER);
 
   const company = await Company.findOne({
-    _id: req.params.id
+    _id: req.params.id,
   });
   if (!company) throw Error(err.ERROR_FINDING_COMPANY);
   // create the invitation
 
   // check to see if the member has already been invited
   const memberExists = company.members.some(member =>
-    member._id.equals(user._id)
+    member._id.equals(user._id),
   );
   // check to see if the member has already been invited
   const inviteExists = company.invites.some(
-    invite => invite && invite.invitee.equals(user._id)
+    invite => invite && invite.invitee.equals(user._id),
   );
 
   // throw an error if either exists
@@ -134,7 +148,7 @@ export const inviteCompanyMember = async (req, res) => {
   const invite = await new Invite({
     creator: req.user._id,
     invitee: user._id,
-    company: company._id
+    company: company._id,
   }).save();
 
   // Add the invite to the company and user
@@ -157,19 +171,19 @@ export const inviteCompanyMember = async (req, res) => {
     template: 'CompanyInvite',
     user,
     company,
-    resetUrl
+    resetUrl,
   });
 
   return res.status(200).send({
     data: { company },
-    errors: []
+    errors: [],
   });
 };
 
 export const acceptInviteCompanyMember = async (req, res) => {
   const invite = await Invite.findOne({
     _id: req.params.inviteId,
-    expires: { $gt: Date.now() }
+    expires: { $gt: Date.now() },
   });
   if (!invite) throw Error(err.ERROR_INVALID_INVITE_TOKEN);
 
@@ -179,7 +193,7 @@ export const acceptInviteCompanyMember = async (req, res) => {
   invite.save();
 
   const company = await Company.findOne({
-    _id: req.params.id
+    _id: req.params.id,
   });
 
   if (!company) throw Error(err.ERROR_FINDING_COMPANY);
@@ -188,7 +202,7 @@ export const acceptInviteCompanyMember = async (req, res) => {
   if (!user) throw Error(err.ERROR_FINDING_USER);
 
   const memberExists = company.members.some(member =>
-    member._id.equals(req.user._id)
+    member._id.equals(req.user._id),
   );
 
   if (memberExists) {
@@ -204,7 +218,7 @@ export const acceptInviteCompanyMember = async (req, res) => {
     user.activeCompany = {
       _id: company._id,
       displayName: company.displayName,
-      name: company.name
+      name: company.name,
     };
   }
 
@@ -216,7 +230,7 @@ export const acceptInviteCompanyMember = async (req, res) => {
 
   return res.status(200).send({
     data: { company },
-    errors: []
+    errors: [],
   });
 };
 
@@ -249,7 +263,7 @@ export const removeCompanyMember = async (req, res) => {
 
   return res.status(200).send({
     data: { company },
-    errors: []
+    errors: [],
   });
 };
 
@@ -260,7 +274,8 @@ export const removeCompanyMember = async (req, res) => {
  * @returns void
  */
 export const getCompany = async (req, res) => {
-  const company = await Company.findOne({ _id: req.params.id });
+  const query = buildCompanyQuery(req.params.id);
+  const company = await Company.findOne(query).populate('jobs');
 
   if (!company) throw Error(err.ERROR_FINDING_COMPANY);
 
@@ -288,18 +303,18 @@ export const deleteCompany = async (req, res) => {
 export const upload = async (req, res) => {
   const company = await Company.findOneAndUpdate(
     {
-      _id: req.params.id
+      _id: req.params.id,
     },
     {
-      logo: req.body.path
+      logo: req.body.path,
     },
-    { new: true }
+    { new: true },
   );
 
   if (!company) throw Error(err.ERROR_UPLOADING_LOGO);
 
   return res.status(200).send({
     data: { company },
-    errors: []
+    errors: [],
   });
 };

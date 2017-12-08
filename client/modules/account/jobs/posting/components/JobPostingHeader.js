@@ -58,7 +58,7 @@ const JobPostingHeaderContainer = styled.div`
 `;
 
 const JobPostingHeaderCompanyLogo = styled.img`
-  height: 72px;
+  height: 66px;
 
   ${media.phablet`
     height: 48px;

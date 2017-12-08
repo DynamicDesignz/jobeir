@@ -113,18 +113,6 @@ const routes = (
         );
       }}
     />
-    {/* <Route
-      path="/:companyName"
-      getComponent={(nextState, cb) => {
-        require.ensure(
-          [],
-          require => {
-            cb(null, require('../modules/company/containers/Company').default);
-          },
-          'company',
-        );
-      }}
-    /> */}
     <Route
       path="/brand"
       getComponent={(nextState, cb) => {
@@ -389,6 +377,18 @@ const routes = (
         }}
       />
     </Route>
+    <Route
+      path="/:companyName"
+      getComponent={(nextState, cb) => {
+        require.ensure(
+          [],
+          require => {
+            cb(null, require('../modules/company/containers/Company').default);
+          },
+          'company',
+        );
+      }}
+    />
     <Route
       path="*"
       getComponent={(nextState, cb) => {

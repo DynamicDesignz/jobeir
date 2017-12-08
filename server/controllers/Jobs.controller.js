@@ -3,6 +3,20 @@ import Company from '../models/Company';
 import uuid from 'uuid';
 import sanitizeHtml from 'sanitize-html';
 import * as err from '../errors/types';
+import mongoose from 'mongoose';
+
+// dynamically building our query to support legacy paths
+const buildJobQuery = id => {
+  const query = {};
+
+  if (mongoose.Types.ObjectId.isValid(id)) {
+    query._id = id;
+  } else {
+    query.pathname = id;
+  }
+
+  return query;
+};
 
 const parsePercentage = value => {
   if (typeof value === 'string') {
@@ -10,17 +24,6 @@ const parsePercentage = value => {
   }
 };
 
-// dynamically building our query to support legacy paths
-const buildJobQuery = id => {
-  const query = {};
-  if (id.includes('-')) {
-    query.pathname = id;
-  } else {
-    query._id = id;
-  }
-
-  return query;
-};
 /**
  * Get all jobs
  * @param req
