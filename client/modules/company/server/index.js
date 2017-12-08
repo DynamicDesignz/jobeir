@@ -7,6 +7,7 @@ import {
 } from '../ducks';
 
 export function serverGetCompany(originalUrl, req) {
+  console.log(originalUrl);
   const endpoint = formatUrl(originalUrl);
 
   return {

@@ -13,18 +13,19 @@ import CompanyJobList from '../components/CompanyJobList';
   {
     promise: ({ store: { dispatch, getState }, helpers: { req } }) => {
       const state = getState();
+      const path = `/companies${req.originalUrl}`;
 
       if (shouldGetCompany(state)) {
-        return dispatch(serverGetCompany(req.originalUrl, req));
+        return dispatch(serverGetCompany(path, req));
       }
     },
   },
 ])
 class Company extends Component {
   componentDidMount() {
-    const { dispatch, isLoaded, params } = this.props;
+    const { dispatch, company, params } = this.props;
 
-    if (!isLoaded) {
+    if (!company.isLoaded) {
       dispatch(getCompany(params.companyName));
     }
   }
@@ -37,23 +38,33 @@ class Company extends Component {
     const { company } = this.props;
 
     return (
-      <CompanyContainer>
-        <CompanyInfo company={company} />
-        {/* <CompanyJobList jobs={company.jobs}/> */}
-      </CompanyContainer>
+      <div>
+        <CompanyColumn>
+          <CompanyInfo company={company} />
+        </CompanyColumn>
+        <CompanyGrey>
+          <CompanyColumn>
+            <CompanyJobList jobs={company.jobs} />
+          </CompanyColumn>
+        </CompanyGrey>
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  company: state.company.company,
+  company: state.company,
 });
 
 export default connect(mapStateToProps)(Company);
 
-const CompanyContainer = styled.div`
+const CompanyColumn = styled.div`
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
+`;
+const CompanyGrey = styled.div`
+  background: #f9f8f7;
+  padding: 50px 0 80px;
 `;

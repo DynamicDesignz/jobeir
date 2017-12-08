@@ -13,7 +13,8 @@ export const initialState: {
   isFetching: boolean,
 } = {
   isFetching: false,
-  details: {},
+  isLoaded: false,
+  jobs: [],
 };
 
 export default (state?: {} = initialState, action?: {} = {}) => {
@@ -27,13 +28,15 @@ export default (state?: {} = initialState, action?: {} = {}) => {
     case GET_COMPANY_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        ...action.payload.data,
+        isLoaded: true,
+        ...action.payload.data.company,
         errors: [],
       });
     case SERVER_GET_COMPANY_FAILURE:
     case GET_COMPANY_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
+        isLoaded: true,
         errors: action.errors.errors,
       });
     case RESET_COMPANY:
