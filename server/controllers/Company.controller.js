@@ -279,6 +279,9 @@ export const getCompany = async (req, res) => {
 
   if (!company) throw Error(err.ERROR_FINDING_COMPANY);
 
+  // Not returning at unpublished jobs
+  company.jobs = company.jobs.filter(job => job.published);
+
   res.status(200).send({ data: { company }, errors: [] });
 };
 
