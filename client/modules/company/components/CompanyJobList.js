@@ -2,25 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Link } from 'react-router';
+import { media } from '../../../styles/breakpoints';
+import { FadeIn } from '../../../styles/animate';
 
 const CompanyJobList = ({ jobs }) => (
   <List>
     {jobs.map(
       ({ company, title, published, location: { address }, _id, pathname }) => (
         <ListItem>
-          <StyledLink to={`/jobs/${pathname || _id}?r=${company.displayName}`}>
-            <div>
-              <JobTitle>{title}</JobTitle>
-              <JobLocation>
-                {address.locality} . posted {moment(published).fromNow()}
-              </JobLocation>
-            </div>
-            <JobViewContainer>
-              <JobView>
-                <JobViewText>View</JobViewText> <LeftArrow />
-              </JobView>
-            </JobViewContainer>
-          </StyledLink>
+          <FadeIn>
+            <StyledLink
+              to={`/jobs/${pathname || _id}?r=${company.displayName}`}
+            >
+              <div>
+                <JobTitle>{title}</JobTitle>
+                <JobLocation>
+                  {address.locality} . posted {moment(published).fromNow()}
+                </JobLocation>
+              </div>
+              <JobViewContainer>
+                <JobView>
+                  <JobViewText>View</JobViewText> <RightArrow />
+                </JobView>
+              </JobViewContainer>
+            </StyledLink>
+          </FadeIn>
         </ListItem>
       ),
     )}
@@ -29,7 +35,7 @@ const CompanyJobList = ({ jobs }) => (
 
 export default CompanyJobList;
 
-const LeftArrow = () => (
+const RightArrow = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -102,6 +108,10 @@ const JobViewContainer = styled.div``;
 const JobView = styled.div`
   display: flex;
   align-items: center;
+
+  ${media.phablet`
+    display: none;
+  `};
 `;
 
 const JobViewText = styled.div`

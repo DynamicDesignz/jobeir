@@ -14,11 +14,11 @@ const GlowAnimation = keyframes`
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.46;
   }
   100% {
     opacity: 1;
   }
 `;
 
-const Glow = styled.div`animation: ${GlowAnimation} 1.25s linear;`;
+const Glow = styled.div`animation: ${GlowAnimation} 1.25s linear infinite;`;

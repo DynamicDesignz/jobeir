@@ -3,11 +3,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 import { serverGetCompany } from '../server/';
 import { shouldGetCompany, getCompany, resetCompany } from '../ducks/';
 import AppHead from '../../app/components/AppHead';
 import CompanyInfo from '../components/CompanyInfo';
+import CompanyInfoPlaceholder from '../components/CompanyInfoPlaceholder';
 import CompanyJobList from '../components/CompanyJobList';
+import CompanyJobListPlaceholder from '../components/CompanyJobListPlaceholder';
+import { FadeIn } from '../../../styles/animate';
 
 @asyncConnect([
   {
@@ -38,14 +42,25 @@ class Company extends Component {
 
     return (
       <div>
+        <AppHead />
         <CompanyWhite>
           <CompanyColumn>
-            <CompanyInfo company={company} />
+            {company.isLoaded ? (
+              <FadeIn>
+                <CompanyInfo company={company} />
+              </FadeIn>
+            ) : (
+              <CompanyInfoPlaceholder />
+            )}
           </CompanyColumn>
         </CompanyWhite>
         <CompanyGrey>
           <CompanyColumn>
-            <CompanyJobList jobs={company.jobs} />
+            {company.isLoaded ? (
+              <CompanyJobList jobs={company.jobs} />
+            ) : (
+              <CompanyJobListPlaceholder />
+            )}
           </CompanyColumn>
         </CompanyGrey>
       </div>
@@ -69,9 +84,17 @@ const CompanyColumn = styled.div`
 const CompanyWhite = styled.div`
   border-bottom: 1px solid #eceaea;
   padding: 50px 0 40px;
+
+  ${media.tablet`
+    padding: 20px 0;
+  `};
 `;
 
 const CompanyGrey = styled.div`
   background: #f9f8f7;
   padding: 40px 0 80px;
+
+  ${media.tablet`
+    padding: 20px 0;
+  `};
 `;

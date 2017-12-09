@@ -244,10 +244,7 @@ class JobsSearch extends Component {
           </JobsSearchColumn>
           <JobsSearchColumn wide>
             <JobsSearchHeader wide>
-              <JobsSearchHeaderText>
-                Search results
-                {/* ({this.props.jobs.count}) */}
-              </JobsSearchHeaderText>
+              <JobsSearchHeaderText>Search results</JobsSearchHeaderText>
             </JobsSearchHeader>
             <InfiniteScroll
               loadMore={this.loadMoreJobs}
@@ -312,13 +309,14 @@ const JobsSearchBackground = styled.div`
 const JobsSearchBackgroundWhite = styled.div`
   flex: 0.63;
   background: #fff;
+  border-right: 1px solid #e5e5e5;
 
   ${media.retina`
-    flex: 0.5;
+    flex: 0.55;
   `};
 
   ${media.hd`
-    flex: 0.45;
+    flex: 0.50;
   `};
 `;
 
@@ -369,7 +367,7 @@ const JobsSearchHeaderText = styled.h2`
 const JobsSearchColumn = styled.div`
   position: relative;
   padding-top: 30px;
-  margin-right: ${props => (props.margin ? '70px' : '0px')};
+  margin-right: ${props => (props.margin ? '50px' : '0px')};
   flex: ${props => (props.wide ? '1.35' : '0.4')};
 
   ${media.hd`

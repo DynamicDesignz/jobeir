@@ -88,6 +88,7 @@ const AppFooterContent = styled.div`
   padding: 100px 24px 125px;
 
   svg {
+    width: 92px;
     margin-bottom: 30px;
   }
 
@@ -95,6 +96,10 @@ const AppFooterContent = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 50px 0;
+
+    svg {
+      margin: 0 auto 30px;
+    }
   `};
 `;
 

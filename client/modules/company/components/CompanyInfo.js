@@ -1,27 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 
 const CompanyJobInfo = ({ company }) => (
   <CompanyContainer>
-    <div>
-      <CompanyLogo src={company.logo} />
-      <CompanyProduct>{company.product}</CompanyProduct>
-    </div>
-    <div>
-      <div>{company.displayName}</div>
-      <div>
+    <CompanyLogo src={company.logo} />
+    <CompanyProduct>{company.product}</CompanyProduct>
+    <CompanyDetails>
+      <CompanyDetailsRow>{company.displayName}</CompanyDetailsRow>
+      <CompanyDetailsRow>{' · '}</CompanyDetailsRow>
+      <CompanyDetailsRow>
         <Link />
-        {company.website}
-      </div>
-      <div>
+        <CompanyDetailsLink
+          src={company.website}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {company.website}
+        </CompanyDetailsLink>
+      </CompanyDetailsRow>
+      <CompanyDetailsRow>{' · '}</CompanyDetailsRow>
+      <CompanyDetailsRow>
         <People />
         {company.size}
-      </div>
-      <div>
+      </CompanyDetailsRow>
+      <CompanyDetailsRow>{' · '}</CompanyDetailsRow>
+      <CompanyDetailsRow>
         <Point />
         {company.locations[0].address.locality}
-      </div>
-    </div>
+      </CompanyDetailsRow>
+    </CompanyDetails>
   </CompanyContainer>
 );
 
@@ -140,14 +148,55 @@ const Point = () => (
     </g>
   </svg>
 );
-const CompanyContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+const CompanyContainer = styled.div`text-align: center;`;
 
 const CompanyLogo = styled.img`
-  max-height: 48px;
-  margin-bottom: 20px;
+  max-height: 60px;
+  margin-bottom: 30px;
+
+  ${media.tablet`
+    max-height: 42px;
+    margin-bottom: 20px;
+  `};
 `;
 
-const CompanyProduct = styled.p`max-width: 400px;`;
+const CompanyProduct = styled.p`
+  max-width: 62%;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 auto 20px;
+
+  ${media.tablet`
+    max-width: 100%;
+    font-size: 16px;
+  `};
+
+  ${media.phablet`
+    margin-bottom 0;
+  `};
+`;
+
+const CompanyDetails = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${media.phablet`
+    display: none;
+  `};
+`;
+
+const CompanyDetailsLink = styled.a`
+  color: ${props => props.theme.colors.black};
+  text-decoration: none;
+  cursor: pointer;
+`;
+
+const CompanyDetailsRow = styled.div`
+  display: flex;
+  margin: 0 4px;
+
+  svg {
+    margin-right: 6px;
+  }
+`;

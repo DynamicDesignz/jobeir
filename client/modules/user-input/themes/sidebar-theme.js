@@ -29,7 +29,7 @@ export default {
     },
   },
   inputWrapper: {
-    marginBottom: '15px',
+    marginBottom: '20px',
   },
   error: {
     color: '#f73c3c',
@@ -42,7 +42,7 @@ export default {
   },
   label: {
     display: 'block',
-    marginBottom: '10px',
+    marginBottom: '12px',
     fontSize: '16px',
     fontWeight: '600',
     color: 'rgba(0,0,0,0.75)',

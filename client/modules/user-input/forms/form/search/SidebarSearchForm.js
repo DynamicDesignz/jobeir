@@ -196,10 +196,10 @@ const SearchInputContainer = styled.div`
   flex-direction: column;
   padding: ${props =>
     props.isMobileFilter ? ' 0 0 10px 0' : '0 40px 15px 0px'};
-  margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '5px')};
+  margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '15px')};
 
   &:first-child {
-    margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '5px')};
+    margin-bottom: ${props => (props.isMobileFilter ? ' 10px' : '15px')};
   }
 `;
 

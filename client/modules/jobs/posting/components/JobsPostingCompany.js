@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router';
 import { media } from '../../../../styles/breakpoints';
 import { FadeIn } from '../../../../styles/animate';
 
@@ -25,8 +26,12 @@ const JobsPostingCompany = (props: { activePosting: {} }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Apply to {activePosting.company.displayName}
+            Apply as {activePosting.title}
           </JobsPostingCompanyLink>
+
+          <StyledLink to={`/${activePosting.company.name}`}>
+            Or see all jobs at {activePosting.company.displayName}
+          </StyledLink>
         </FadeIn>
       )}
     </JobsPostingCompanyContainer>
@@ -83,7 +88,7 @@ const JobsPostingCompanyText = styled.p`
 
 const JobsPostingCompanyLink = styled.a`
   position: relative;
-  margin: 70px auto 140px;
+  margin: 70px auto 20px;
   width: 100%;
   height: 60px;
   font-size: 18px;
@@ -110,4 +115,14 @@ const JobsPostingCompanyLink = styled.a`
     height: 48px
     margin: 40px auto 80px;
   `};
+`;
+
+const StyledLink = styled(Link)`
+  display: block;
+  margin: 40px auto 80px;
+  padding: 4px;
+  color: ${props => props.theme.colors.black};
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
 `;

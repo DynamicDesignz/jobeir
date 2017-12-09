@@ -48,7 +48,8 @@ const PlaceholderRow = styled.div`
   background: #fff;
   margin-bottom: 20px;
   border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #e5e5e5;
   cursor: pointer;
   width: 100%;
   height: 222px;

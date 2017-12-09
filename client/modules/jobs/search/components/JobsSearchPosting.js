@@ -5,6 +5,7 @@ import { media } from '../../../../styles/breakpoints';
 import { Link } from 'react-router';
 import moment from 'moment';
 import { FadeIn } from '../../../../styles/animate/';
+import { ChevronLeft } from '../../../../icons';
 
 const trunc = (str: string, length: number): string =>
   str.length > length ? `${str.substr(0, length - 1)}...` : str;
@@ -63,20 +64,22 @@ const JobsSearchPosting = (props: {
           <JobsSearchPostingCompanyProduct>
             {trunc(posting.company.product, 170)}
           </JobsSearchPostingCompanyProduct>
-          <JobsSearchPostingBottom includesSalary={includesSalary}>
+          <JobsSearchPostingBottom includesSalary={true}>
             <JobsSearchPostingType includesSalary={includesSalary}>
-              {posting.employmentType}
+              {posting.employmentType} {' '}
               {includesSalary && (
                 <span>
-                  {' '}
                   · ${posting.salary.min / 1000}K - ${posting.salary.max / 1000}K
                 </span>
               )}
+              <span>
+                {includesSalary ? '' : ' · posted '}
+                {moment(posting.published).fromNow()}
+              </span>
             </JobsSearchPostingType>
-            <span>
-              {includesSalary ? '' : ' · posted '}
-              {moment(posting.published).fromNow()}
-            </span>
+            <StyledJobsLink to={`/${posting.company.name}`}>
+              View all {posting.company.displayName} jobs <RightArrow />
+            </StyledJobsLink>
           </JobsSearchPostingBottom>
         </StyledLink>
       </JobsSearchPostingContainer>
@@ -92,7 +95,8 @@ const JobsSearchPostingContainer = styled.div`
   background: #fff;
   margin-bottom: 20px;
   border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #e5e5e5;
   cursor: pointer;
 
   ${media.phablet`
@@ -113,6 +117,69 @@ const StyledLink = styled(Link)`
     padding: 20px;
   `};
 `;
+
+const StyledJobsLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: ${props => props.theme.colors.black};
+
+  &:hover svg {
+    transform: translateX(3px);
+  }
+
+  svg {
+    transition: transform 180ms ease-in-out;
+    margin: 0 0 2px 8px;
+  }
+
+  ${media.phablet`
+    margin-top: 12px;
+    
+      svg {
+        display: none;
+      }
+  `};
+`;
+
+const RightArrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    width="18px"
+    height="18px"
+    viewBox="0 0 32 32"
+    strokeWidth="2"
+  >
+    <g strokeWidth="2" transform="translate(0, 0)">
+      <line
+        data-cap="butt"
+        data-color="color-2"
+        fill="none"
+        stroke="#0f0f17"
+        strokeWidth="2"
+        strokeMiterlimit="10"
+        x1="2"
+        y1="16"
+        x2="30"
+        y2="16"
+        strokeLinejoin="miter"
+        strokeLinecap="butt"
+      />
+      <polyline
+        fill="none"
+        stroke="#0f0f17"
+        strokeWidth="2"
+        strokeLinecap="square"
+        strokeMiterlimit="10"
+        points="21,7 30,16 21,25 "
+        strokeLinejoin="miter"
+      />
+    </g>
+  </svg>
+);
 
 const CompanyLogo = styled.img`
   max-width: 120px;
@@ -155,6 +222,7 @@ const JobsSearchPostingBottom = styled.div`
   color: ${props => props.theme.colors.black};
 
   ${media.phablet`
+    flex-direction: column;
     font-size: 14px;
   `};
 `;
