@@ -12,7 +12,7 @@ const CompanyJobInfo = ({ company }) => (
       <CompanyDetailsRow>
         <Link />
         <CompanyDetailsLink
-          src={company.website}
+          href={company.website}
           target="_blank"
           rel="noopener noreferrer"
         >
