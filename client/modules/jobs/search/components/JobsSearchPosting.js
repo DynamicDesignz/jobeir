@@ -182,8 +182,8 @@ const RightArrow = () => (
 );
 
 const CompanyLogo = styled.img`
-  max-width: 120px;
-  max-height: 34px;
+  max-width: 88px;
+  max-height: 28px;
 
   ${media.phablet`
     order: 1;
