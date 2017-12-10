@@ -15,33 +15,33 @@ const JobSearchFilterMobileHeader = props => {
     lng: search.lng || (search.coordinates && search.coordinates[1]),
     title: {
       label: search.title && search.title.value,
-      value: search.title && search.title.value
+      value: search.title && search.title.value,
     },
     companySize: undefined,
     distance: undefined,
     employmentType: undefined,
     equity: undefined,
-    remote: undefined
+    remote: undefined,
   };
 
   return (
     <JobSearchFilterMobileHeaderContainer>
-      <JobSearchFilterMobileHeaderButton
-        onClick={() => dispatch(toggleMobileFilters())}
-      >
-        <ExIcon />
-      </JobSearchFilterMobileHeaderButton>
       <JobSearchFilterMobileClear
         onClick={() => dispatch(initialize('search', reset))}
       >
         Clear filters
       </JobSearchFilterMobileClear>
+      <JobSearchFilterMobileHeaderButton
+        onClick={() => dispatch(toggleMobileFilters())}
+      >
+        <ExIcon />
+      </JobSearchFilterMobileHeaderButton>
     </JobSearchFilterMobileHeaderContainer>
   );
 };
 const mapStateToProps = state => ({
   showMobileFilters: state.search.jobs.showMobileFilters,
-  search: (state.form.search && state.form.search.values) || {}
+  search: (state.form.search && state.form.search.values) || {},
 });
 
 export default connect(mapStateToProps)(JobSearchFilterMobileHeader);
