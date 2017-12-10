@@ -203,10 +203,6 @@ const JobsSearchPostingTop = styled.div`
     margin-bottom: 10px;
     flex-direction: column;
   `};
-
-  ${media.phonePlus`
-    margin-bottom: 8px;
-  `};
 `;
 
 const JobsSearchPostingText = styled.div`
@@ -235,12 +231,11 @@ const JobsSearchPostingTitle = styled.h2`
 
   ${media.tablet`
     font-size: 25px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   `};
 
   ${media.phonePlus`
     font-size: 22px;
-    margin-bottom: 8px;
   `};
 `;
 
@@ -264,6 +259,7 @@ const JobsSearchPostingCompanyProduct = styled.p`
   color: #5f5e5e;
 
   ${media.phablet`
+    display: none;
     font-size: 14px;
     margin-bottom: 10px;
   `};

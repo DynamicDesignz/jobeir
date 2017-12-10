@@ -20,7 +20,7 @@ const LogoLink = styled(Link)`
     width: 100px;
 
     ${media.tablet`
-      width: 80px;
+      width: 66px;
     `};
   }
 `;

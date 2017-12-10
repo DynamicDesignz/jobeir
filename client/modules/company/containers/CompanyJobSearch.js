@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../../styles/breakpoints';
 
 const CompanyJobSearch = ({ handleInputChange, value, placeholder }) => (
   <InputContainer>
@@ -22,6 +23,10 @@ const StyledInput = styled.input`
   width: 400px;
   color: ${props => props.theme.colors.block};
   font-size: 16px;
+
+  ${media.tablet`
+    width: 100%;
+  `};
 
   ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */

@@ -55,10 +55,10 @@ class Company extends Component {
     if (filter) {
       const fuseInstance = new fuse(jobs, {
         distance: 50,
-        keys: ['title', 'role.label'],
+        keys: ['title'],
         minMatchCharLength: 1,
         shouldSort: true,
-        threshold: 0.5,
+        threshold: 0.3,
       });
 
       jobs = fuseInstance.search(filter);

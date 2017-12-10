@@ -94,14 +94,27 @@ const StyledLink = styled(Link)`
   &:hover {
     background: #fafafa;
   }
+
+  ${media.tablet`
+    padding: 12px 16px;
+  `};
 `;
 
 const JobTitle = styled.h2`
   font-family: ${props => props.theme.fontFamily.tiempos};
   margin-bottom: 8px;
+
+  ${media.tablet`
+    font-size: 20px;
+  `};
 `;
 
-const JobLocation = styled.div`opacity: 0.6;`;
+const JobLocation = styled.div`
+  opacity: 0.6;
+  ${media.tablet`
+    font-size: 16px;
+  `};
+`;
 
 const JobViewContainer = styled.div``;
 

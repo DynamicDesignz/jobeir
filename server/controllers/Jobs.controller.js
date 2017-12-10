@@ -9,12 +9,56 @@ import mongoose from 'mongoose';
 const buildJobQuery = id => {
   const query = {};
 
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(id);
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
+  console.log(mongoose.Types.ObjectId.isValid(id));
   if (mongoose.Types.ObjectId.isValid(id)) {
     query._id = id;
   } else {
     query.pathname = id;
   }
 
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
+  console.log(query);
   return query;
 };
 

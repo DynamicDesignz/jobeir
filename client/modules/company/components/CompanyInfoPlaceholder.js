@@ -12,6 +12,7 @@ const CompanyInfoPlaceholder = () => (
         <CompanyProductText width={100} />
       </CompanyProductTextContainer>
       <CompanyDetails />
+      <CompanyJobSearch />
     </CompanyContainer>
   </Glow>
 );
@@ -46,6 +47,14 @@ const CompanyProductText = styled.div`
 const CompanyDetails = styled.div`
   background: ${props => props.theme.colors.placeholder};
   height: 20px;
+  width: 400px;
+  margin: 0 auto 20px;
+`;
+
+const CompanyJobSearch = styled.div`
+  background: ${props => props.theme.colors.placeholder};
+  height: 40px;
+  border-radius: 30px;
   width: 400px;
   margin: 0 auto;
 `;
