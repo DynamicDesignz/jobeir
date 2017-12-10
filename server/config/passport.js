@@ -3,7 +3,7 @@ import ExtractJwt from 'passport-jwt/lib/extract_jwt';
 import Users from '../models/Users';
 import serverConfig from '../config/config';
 import GoogleStrategy from 'passport-google-oauth20';
-import TwitterStrategy from 'passport-twitter';
+import TwitterStrategy from 'passport-twitter-email';
 import FacebookStrategy from 'passport-facebook';
 import GitHubStrategy from 'passport-github2';
 import { passportFindOrCreate } from '../util/passportFindOrCreate';
@@ -44,8 +44,8 @@ const passportInit = passport => {
   passport.use(
     new TwitterStrategy.Strategy(
       {
-        consumerKey: serverConfig.twitterAuth.clientID,
-        consumerSecret: serverConfig.twitterAuth.clientSecret,
+        consumerKey: serverConfig.twitterAuth.consumerKey,
+        consumerSecret: serverConfig.twitterAuth.consumerSecret,
         callbackURL: serverConfig.twitterAuth.callbackURL,
       },
       passportFindOrCreate,

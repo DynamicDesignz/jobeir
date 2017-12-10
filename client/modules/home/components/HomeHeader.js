@@ -52,7 +52,7 @@ const HeaderText = styled.h1`
   ${media.phone`
     font-size: 32px;
     text-align: left;
-    margin: 10px auto 28px;
+    margin: 10px auto 40px;
     line-height: 1.25;
   `};
 `;

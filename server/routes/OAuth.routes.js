@@ -29,7 +29,7 @@ router.get(
   },
 );
 
-// Facebook Auth
+// Twitter Auth
 router.get('/auth/twitter', passport.authenticate('twitter'));
 
 router.get(

@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { media } from '../../../styles/breakpoints';
 import docCookies from '../../../utils/cookies';
-import { FacebookIcon, GoogleIcon, GithubIcon } from '../../../icons/';
+import {
+  FacebookIcon,
+  TwitterIcon,
+  GoogleIcon,
+  GithubIcon,
+} from '../../../icons/';
 
 const buildRedirectPath = (routing: { search: 'string' }) => {
   if (routing.search) {
@@ -28,13 +33,17 @@ class AuthOAuth extends Component {
           <GoogleIcon />
           <OAuthButtonText>Continue with Google</OAuthButtonText>
         </GoogleButton>
-        <FacebookButton
+        <TwitterButton padded={padded} href={`/auth/twitter/${routing.search}`}>
+          <TwitterIcon />
+          <OAuthButtonText>Continue with Twitter</OAuthButtonText>
+        </TwitterButton>
+        {/* <FacebookButton
           padded={padded}
-          href={`/auth/twitter/${routing.search}`}
+          href={`/auth/facebook/${routing.search}`}
         >
           <FacebookIcon />
-          <OAuthButtonText>Continue with Twitter</OAuthButtonText>
-        </FacebookButton>
+          <OAuthButtonText>Continue with Facebook</OAuthButtonText>
+        </FacebookButton> */}
         <GithubButton padded={padded} href={`/auth/github/${routing.search}`}>
           <GithubIcon />
           <OAuthButtonText>Continue with Github</OAuthButtonText>
@@ -109,6 +118,20 @@ const FacebookButton = styled(OAuthButton)`
 
   &:hover {
     background-color: #344e84;
+  }
+
+  svg {
+    ${media.phablet`
+      width: 22px;
+    `};
+  }
+`;
+
+const TwitterButton = styled(OAuthButton)`
+  background-color: #429cd6;
+
+  &:hover {
+    background-color: #388ec5;
   }
 
   svg {
