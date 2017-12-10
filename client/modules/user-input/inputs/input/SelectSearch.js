@@ -13,7 +13,6 @@ export const SelectSearch = (props: {
   meta: { touched: boolean, error: boolean, invalid: boolean },
   placeholder: string,
 }) => {
-  console.log({ props });
   const { input, options, meta, placeholder } = props;
   const showError: boolean = meta.touched && meta.error && meta.invalid;
 

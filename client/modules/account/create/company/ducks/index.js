@@ -85,7 +85,6 @@ export default (state?: {} = initialState, action?: {} = {}) => {
         isUpdating: true,
       });
     case UPDATE_COMPANY_SUCCESS:
-      console.log({ state });
       return Object.assign({}, state, {
         isUpdating: false,
         activeCompany: action.payload.data.company,
