@@ -26,6 +26,13 @@ class JobsSearchFilterMobile extends Component {
     ) {
       this.udpateSearchQuery(updatedLocation);
     }
+
+    console.log(this.props);
+    if (this.props.jobs.showMobileFilters) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.removeAttribute('style');
+    }
   }
 
   udpateSearchQuery = updatedLocation => {

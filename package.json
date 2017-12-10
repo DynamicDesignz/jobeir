@@ -68,6 +68,7 @@
         "passport-github2": "^0.1.10",
         "passport-google-oauth20": "^1.0.0",
         "passport-jwt": "^2.2.1",
+        "passport-twitter": "^1.0.4",
         "query-string": "^4.3.4",
         "rapscallion": "^2.1.10",
         "react": "^16.0.0",

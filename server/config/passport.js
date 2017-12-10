@@ -3,6 +3,7 @@ import ExtractJwt from 'passport-jwt/lib/extract_jwt';
 import Users from '../models/Users';
 import serverConfig from '../config/config';
 import GoogleStrategy from 'passport-google-oauth20';
+import TwitterStrategy from 'passport-twitter';
 import FacebookStrategy from 'passport-facebook';
 import GitHubStrategy from 'passport-github2';
 import { passportFindOrCreate } from '../util/passportFindOrCreate';
@@ -24,7 +25,7 @@ const passportInit = passport => {
 
         return done(null, false);
       });
-    })
+    }),
   );
 
   // Google
@@ -33,10 +34,22 @@ const passportInit = passport => {
       {
         clientID: serverConfig.googleAuth.clientID,
         clientSecret: serverConfig.googleAuth.clientSecret,
-        callbackURL: serverConfig.googleAuth.callbackURL
+        callbackURL: serverConfig.googleAuth.callbackURL,
       },
-      passportFindOrCreate
-    )
+      passportFindOrCreate,
+    ),
+  );
+
+  // Twitter
+  passport.use(
+    new TwitterStrategy.Strategy(
+      {
+        consumerKey: serverConfig.twitterAuth.clientID,
+        consumerSecret: serverConfig.twitterAuth.clientSecret,
+        callbackURL: serverConfig.twitterAuth.callbackURL,
+      },
+      passportFindOrCreate,
+    ),
   );
 
   // Facebook
@@ -46,10 +59,10 @@ const passportInit = passport => {
         clientID: serverConfig.facebookAuth.clientID,
         clientSecret: serverConfig.facebookAuth.clientSecret,
         callbackURL: serverConfig.facebookAuth.callbackURL,
-        profileFields: ['id', 'email', 'gender', 'locale', 'name', 'timezone']
+        profileFields: ['id', 'email', 'gender', 'locale', 'name', 'timezone'],
       },
-      passportFindOrCreate
-    )
+      passportFindOrCreate,
+    ),
   );
 
   // Github
@@ -59,10 +72,10 @@ const passportInit = passport => {
         clientID: serverConfig.githubAuth.clientID,
         clientSecret: serverConfig.githubAuth.clientSecret,
         callbackURL: serverConfig.githubAuth.callbackURL,
-        scope: ['user']
+        scope: ['user'],
       },
-      passportFindOrCreate
-    )
+      passportFindOrCreate,
+    ),
   );
 
   passport.serializeUser((user, done) => {
@@ -70,7 +83,9 @@ const passportInit = passport => {
   });
 
   passport.deserializeUser((id, done) => {
-    Users.findById(id).then(user => done(null, user)).catch(done);
+    Users.findById(id)
+      .then(user => done(null, user))
+      .catch(done);
   });
 };
 

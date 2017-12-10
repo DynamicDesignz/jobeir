@@ -8,43 +8,58 @@ const router = new Router();
 
 const buildKey = user => ({
   email: user.email,
-  _id: user._id
+  _id: user._id,
 });
 
 // Google Auth
 router.get(
   '/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
 );
 
 router.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    failureRedirect: '/login'
+    failureRedirect: '/login',
   }),
   (req, res) => {
     const token = jwt.sign(buildKey(req.user), process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
-  }
+  },
+);
+
+// Facebook Auth
+router.get('/auth/twitter', passport.authenticate('twitter'));
+
+router.get(
+  '/auth/twitter/callback',
+  passport.authenticate('twitter', {
+    failureRedirect: '/login',
+  }),
+  (req, res) => {
+    const token = jwt.sign(buildKey(req.user), process.env.JWT);
+
+    res.cookie('SID', token).redirect('/redirect');
+  },
 );
 
 // Facebook Auth
 router.get(
   '/auth/facebook',
-  passport.authenticate('facebook', { scope: ['email'] })
+  passport.authenticate('facebook', { scope: ['email'] }),
 );
 
 router.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', {
-    failureRedirect: '/login'
+    failureRedirect: '/login',
   }),
   (req, res) => {
     const token = jwt.sign(buildKey(req.user), process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
-  }
+  },
 );
 
 // Github Auth with no scope
@@ -54,13 +69,13 @@ router.get('/auth/github', passport.authenticate('github'));
 router.get(
   '/auth/github/callback',
   passport.authenticate('github', {
-    failureRedirect: '/login'
+    failureRedirect: '/login',
   }),
   (req, res) => {
     const token = jwt.sign(buildKey(req.user), process.env.JWT);
 
     res.cookie('SID', token).redirect('/redirect');
-  }
+  },
 );
 
 export default router;

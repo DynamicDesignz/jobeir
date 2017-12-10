@@ -30,10 +30,10 @@ class AuthOAuth extends Component {
         </GoogleButton>
         <FacebookButton
           padded={padded}
-          href={`/auth/facebook/${routing.search}`}
+          href={`/auth/twitter/${routing.search}`}
         >
           <FacebookIcon />
-          <OAuthButtonText>Continue with Facebook</OAuthButtonText>
+          <OAuthButtonText>Continue with Twitter</OAuthButtonText>
         </FacebookButton>
         <GithubButton padded={padded} href={`/auth/github/${routing.search}`}>
           <GithubIcon />
@@ -45,7 +45,7 @@ class AuthOAuth extends Component {
 }
 
 const mapStateToProps = state => ({
-  routing: state.routing.locationBeforeTransitions || {}
+  routing: state.routing.locationBeforeTransitions || {},
 });
 
 export default connect(mapStateToProps)(AuthOAuth);

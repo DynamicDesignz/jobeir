@@ -50,9 +50,9 @@ const HeaderText = styled.h1`
   `};
 
   ${media.phone`
-    font-size: 34px;
+    font-size: 32px;
     text-align: left;
-    margin: 10px auto 48px;
-    line-height: 1.4;
+    margin: 10px auto 28px;
+    line-height: 1.25;
   `};
 `;
