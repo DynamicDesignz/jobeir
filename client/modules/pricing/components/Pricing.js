@@ -20,9 +20,12 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
         <PricingAmountContainer>
           <PricingAmountContent>
             <PricingCurrency>$</PricingCurrency>
-            <PricingAmount>49</PricingAmount>
+            <PricingAmount>0</PricingAmount>
             <PricingTerm>per job post</PricingTerm>
           </PricingAmountContent>
+          <BetaText>
+            Original price, $49 per job post, does not apply for launch period.
+          </BetaText>
           <AuthOAuth />
           <TermsText>
             By clicking “Continue with Google", or “Continue with Facebook" or
@@ -235,6 +238,15 @@ const TermsText = styled.p`
   color: ${props => props.theme.colors.grey.mid};
   line-height: 1.6;
   margin-top: 50px;
+
+  ${media.tablet`
+    margin-top: 16px;
+  `};
+`;
+const BetaText = styled.p`
+  color: ${props => props.theme.colors.black};
+  line-height: 1.6;
+  margin: 0 auto 20px;
 
   ${media.tablet`
     margin-top: 16px;

@@ -15,7 +15,8 @@ export default props => (
       </EmailRow>
       <EmailRow>
         <strong>Payment confirmation</strong>
-        <br />$49 USD
+        {/* <br />$49 USD */}
+        <br />$0 USD
       </EmailRow>
       <EmailRow>
         <strong>Published job</strong> <br />

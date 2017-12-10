@@ -20,22 +20,3 @@ const CompanyJob = styled.div`
   width: 100%;
   height: 90px;
 `;
-
-const CompanyProductTextContainer = styled.div`
-  width: 62%;
-  margin: 0 auto 20px;
-`;
-
-const CompanyProductText = styled.div`
-  background: ${props => props.theme.colors.placeholder};
-  height: 20px;
-  width: ${props => props.width}%;
-  margin: 0 auto 12px;
-`;
-
-const CompanyDetails = styled.div`
-  background: ${props => props.theme.colors.placeholder};
-  height: 20px;
-  width: 400px;
-  margin: 0 auto;
-`;

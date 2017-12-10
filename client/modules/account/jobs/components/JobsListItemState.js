@@ -7,9 +7,7 @@ import { showModal } from '../../../modal/ducks';
 /**
  * JobsListItemState()
  */
-const JobsListItemState = props => {
-  const { dispatch, job } = props;
-
+const JobsListItemState = ({ dispatch, job }) => {
   switch (job.state) {
     case 'pending':
       return (

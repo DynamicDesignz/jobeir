@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { asyncConnect } from 'redux-connect';
 import styled from 'styled-components';
+import fuse from 'fuse.js';
 import { media } from '../../../styles/breakpoints';
 import { serverGetCompany } from '../server/';
 import { shouldGetCompany, getCompany, resetCompany } from '../ducks/';
@@ -11,6 +12,7 @@ import CompanyInfo from '../components/CompanyInfo';
 import CompanyInfoPlaceholder from '../components/CompanyInfoPlaceholder';
 import CompanyJobList from '../components/CompanyJobList';
 import CompanyJobListPlaceholder from '../components/CompanyJobListPlaceholder';
+import CompanyJobSearch from './CompanyJobSearch';
 import { FadeIn } from '../../../styles/animate';
 
 @asyncConnect([
@@ -25,6 +27,10 @@ import { FadeIn } from '../../../styles/animate';
   },
 ])
 class Company extends Component {
+  state = {
+    filter: '',
+  };
+
   componentDidMount() {
     const { dispatch, company, params } = this.props;
 
@@ -37,17 +43,46 @@ class Company extends Component {
     this.props.dispatch(resetCompany());
   }
 
+  handleInputChange = event => {
+    const filter = event.target.value;
+
+    this.setState({ filter });
+  };
+
+  filterJobs = jobs => {
+    const { filter } = this.state;
+
+    if (filter) {
+      const fuseInstance = new fuse(jobs, {
+        distance: 50,
+        keys: ['title', 'role.label'],
+        minMatchCharLength: 1,
+        shouldSort: true,
+        threshold: 0.5,
+      });
+
+      jobs = fuseInstance.search(filter);
+    }
+
+    return jobs;
+  };
+
   render() {
     const { company } = this.props;
 
     return (
       <div>
-        <AppHead />
+        <AppHead title={company.displayName} />
         <CompanyWhite>
           <CompanyColumn>
             {company.isLoaded ? (
               <FadeIn>
                 <CompanyInfo company={company} />
+                <CompanyJobSearch
+                  handleInputChange={this.handleInputChange}
+                  value={this.state.filter}
+                  placeholder={`Search ${company.displayName} jobs`}
+                />
               </FadeIn>
             ) : (
               <CompanyInfoPlaceholder />
@@ -57,7 +92,7 @@ class Company extends Component {
         <CompanyGrey>
           <CompanyColumn>
             {company.isLoaded ? (
-              <CompanyJobList jobs={company.jobs} />
+              <CompanyJobList jobs={this.filterJobs(company.jobs)} />
             ) : (
               <CompanyJobListPlaceholder />
             )}
