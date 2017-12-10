@@ -2,6 +2,7 @@
 import { SWITCH_ACTIVE_COMPANY_SUCCESS } from '../../../../user/ducks/';
 
 import { STRIPE_PAYMENT_SUCCESS } from '../../../../payments/stripe/ducks';
+import { FREE_PAYMENT_SUCCESS } from '../../../../payments/stripe/ducks';
 
 import { CREATE_COMPANY_SUCCESS } from '../../company/ducks';
 
@@ -93,6 +94,7 @@ export default (state: {} = initialState, action: {}): {} => {
         errors: [],
       });
     case STRIPE_PAYMENT_SUCCESS:
+    case FREE_PAYMENT_SUCCESS:
       return Object.assign({}, state, {
         isUpdating: false,
         postings: state.postings.map(

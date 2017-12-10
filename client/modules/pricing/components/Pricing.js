@@ -25,10 +25,11 @@ const Pricing = (props: { activeCompany: { _id: string } }) => {
           </PricingAmountContent>
           <BetaText>
             Original price, $49 per job post, does not apply for launch period.
+            *This is a limited time offer*
           </BetaText>
           <AuthOAuth />
           <TermsText>
-            By clicking “Continue with Google", or “Continue with Facebook" or
+            By clicking “Continue with Google", or “Continue with Twitter" or
             “Continue with Github", you agree to our{' '}
             <StyledTermsLink to="/terms-of-service">
               Terms of Service

@@ -31,7 +31,7 @@ const JobsListItem = (props: {
     createdAt: string,
   },
 }) => {
-  const { dispatch, job } = props;
+  const { activeCompany, dispatch, job } = props;
   const jobId = job.pathname || job._id;
 
   return (
@@ -42,7 +42,11 @@ const JobsListItem = (props: {
         >
           {job.title}
         </JobsTitle>
-        <JobsListItemState job={job} dispatch={dispatch} />
+        <JobsListItemState
+          company={activeCompany}
+          job={job}
+          dispatch={dispatch}
+        />
       </JobsMain>
       <JobsSub onClick={() => browserHistory.push(`/account/jobs/${jobId}`)}>
         <div>
@@ -51,28 +55,30 @@ const JobsListItem = (props: {
             <JobsDot>·</JobsDot>
           </HideOnMobile>
         </div>
-        <div>
-          {job.location.address.locality}
-          {', '}
-          {job.location.address.administrative_area_level_1}
+        <div style={{ display: 'flex' }}>
+          <div>
+            {job.location.address.locality}
+            {', '}
+            {job.location.address.administrative_area_level_1}
+          </div>
+          {job.salary.min > 0 &&
+            job.salary.max > 0 && (
+              <span>
+                <JobsDot>·</JobsDot>
+                <HideOnMobile>
+                  ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
+                </HideOnMobile>
+              </span>
+            )}
+          <HideOnMobile>
+            {job.published && (
+              <span>
+                <JobsDot>·</JobsDot>
+                Published {moment(job.published).fromNow()}
+              </span>
+            )}
+          </HideOnMobile>
         </div>
-        {job.salary.min > 0 &&
-          job.salary.max > 0 && (
-            <span>
-              <JobsDot>·</JobsDot>
-              <HideOnMobile>
-                ${job.salary.min / 1000}K - ${job.salary.max / 1000}K
-              </HideOnMobile>
-            </span>
-          )}
-        <HideOnMobile>
-          {job.published && (
-            <span>
-              <JobsDot>·</JobsDot>
-              Published {moment(job.published).fromNow()}
-            </span>
-          )}
-        </HideOnMobile>
       </JobsSub>
 
       {job.state === 'pending' && (
@@ -82,12 +88,12 @@ const JobsListItem = (props: {
           </HideOnMobile>
           <JobsDetailsText>
             This job post is not live. You must{' '}
-            <u
+            {/* <u
               style={{ textDecoration: 'ink' }}
               onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
-            >
-              publish
-            </u>{' '}
+            > */}
+            publish
+            {/* </u>{' '} */}
             a job post before applicants can see it.
           </JobsDetailsText>
         </JobsDetails>
@@ -96,7 +102,11 @@ const JobsListItem = (props: {
   );
 };
 
-export default connect()(JobsListItem);
+const mapStateToProps = state => ({
+  activeCompany: state.account.companies.activeCompany,
+});
+
+export default connect(mapStateToProps)(JobsListItem);
 
 const JobsTitle = styled.h3`
   font-size: 22px;

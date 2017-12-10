@@ -2,17 +2,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../../../styles/breakpoints';
-import { showModal } from '../../../modal/ducks';
+// import { showModal } from '../../../modal/ducks';
+import { freePaymentRequest } from '../../../payments/stripe/ducks/';
 
 /**
- * JobsListItemState()
+ * Commented out
+ * 
+ * // import { showModal } from '../../../modal/ducks';
+ * // onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
+ * 
+ * because we're handling free payments for now. Once the launch period
+ * is over we can start charging for postings
  */
-const JobsListItemState = ({ dispatch, job }) => {
+
+const JobsListItemState = ({ company, dispatch, job }) => {
   switch (job.state) {
     case 'pending':
       return (
         <JobsState
-          onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
+          // onClick={() => dispatch(showModal('JOB_PAYMENT_MODAL', job))}
+          onClick={() => dispatch(freePaymentRequest({ company, job }))}
         >
           <PublishButton>Publish</PublishButton>
         </JobsState>

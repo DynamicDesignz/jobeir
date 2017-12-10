@@ -6,6 +6,20 @@ import * as err from '../errors/types';
 
 const stripe = stripePackage(process.env.STRIPE_PRIVATE);
 
+export const freeProcessor = async (req, res) => {
+  const { job, company } = req.body;
+
+  const jobPosting = await Jobs.findOneAndUpdate(
+    { _id: job._id },
+    { state: 'active', published: Date.now(), payment: {} },
+    { new: true },
+  ).select('-description');
+
+  return res
+    .status(200)
+    .send({ data: { company, job: jobPosting }, errors: [] });
+};
+
 /*
  * Get all jobs
  * @param req
