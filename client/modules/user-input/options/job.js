@@ -4,7 +4,6 @@ export const jobOptions = [
   { label: 'Frontend Developer', value: 'Frontend Developer' },
   { label: 'Backend Developer', value: 'Backend Developer' },
   { label: 'Full-Stack Developer', value: 'Full-Stack Developer' },
-  { label: 'Web Developer', value: 'Web Developer' },
   { label: 'Build Engineer', value: 'Build Engineer' },
   { label: 'Machine Learning Engineer', value: 'Machine Learning Engineer' },
   { label: 'Security Engineer', value: 'Security Engineer' },
@@ -20,16 +19,16 @@ export const jobOptions = [
   { label: 'Mechanical Engineer', value: 'Mechanical Engineer' },
   { label: 'Systems Engineer', value: 'Systems Engineer' },
   { label: 'Designer', value: 'Designer' },
-  { label: 'Brand/Graphic Designer', value: 'Brand/Graphic Designer' },
+  { label: 'Graphic Designer', value: 'Graphic Designer' },
   { label: 'User Researcher', value: 'User Researcher' },
-  { label: 'Visual/UI Designer', value: 'Visual/UI Designer' },
+  { label: 'UI Designer', value: 'UI Designer' },
   { label: 'UX Designer', value: 'UX Designer' },
   { label: 'Product Designer', value: 'Product Designer' },
   { label: 'Creative Director', value: 'Creative Director' },
   { label: 'Accounting', value: 'Accounting' },
   {
     label: 'Financial Management / Analysis',
-    value: 'Financial Management / Analysis'
+    value: 'Financial Management / Analysis',
   },
   { label: 'General Management', value: 'General Management' },
   { label: 'H.R.', value: 'H.R.' },
@@ -43,7 +42,10 @@ export const jobOptions = [
   { label: 'Operations Manager', value: 'Operations Manager' },
   { label: 'Sales', value: 'Sales' },
   { label: 'Business Development', value: 'Business Development' },
-  { label: 'BD Manager', value: 'BD Manager' },
+  {
+    label: 'Business Development Manager',
+    value: 'Business Development Manager',
+  },
   { label: 'Account Manager', value: 'Account Manager' },
   { label: 'Sales Manager', value: 'Sales Manager' },
   { label: 'Sales Operactions', value: 'Sales Operactions' },
@@ -69,8 +71,14 @@ export const jobOptions = [
   { label: 'Data Scientist', value: 'Data Scientist' },
   { label: 'Data Analyst', value: 'Data Analyst' },
   { label: 'Data Engineer', value: 'Data Engineer' },
-  { label: 'Product Manager', value: 'Product Manager' },
-  { label: 'Project Manager', value: 'Project Manager' }
+  { label: 'Performance Engineer', value: 'Performance Engineer' },
+  { label: 'Product Researcher', value: 'Product Researcher' },
+  { label: 'Data Researcher', value: 'Data Researcher' },
+  { label: 'UX Researcher', value: 'UX Researcher' },
+  { label: 'Infrastructure Engineer', value: 'Infrastructure Engineer' },
+  { label: 'Communication Designer', value: 'Communication Designer' },
+  { label: 'Developer Advocate', value: 'Developer Advocate' },
+  { label: 'Salesforce Developer', value: 'Salesforce Developer' },
 ];
 
 export default jobOptions;

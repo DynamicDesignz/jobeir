@@ -29,7 +29,7 @@ const CompanyLogo = styled.div`
 `;
 
 const CompanyProductTextContainer = styled.div`
-  width: 62%;
+  width: 66%;
   margin: 0 auto 20px;
 
   ${media.tablet`
@@ -57,4 +57,8 @@ const CompanyJobSearch = styled.div`
   border-radius: 30px;
   width: 400px;
   margin: 0 auto;
+
+  ${media.tablet`
+    width: 100%
+  `};
 `;

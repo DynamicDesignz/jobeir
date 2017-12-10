@@ -421,7 +421,8 @@ function getRoutesArray(obj: {}) {
     '/api/v0/upload',
     '/api/v0/search/jobs',
     '/favicon.ico',
-    new RegExp('\\/api\\/v0\\/jobs\\/[^\\/]+$'), // matches /api/v0/jobs/:id
+    new RegExp('\\/api\\/v0\\/jobs\\/[^\\/]+$'), // matches /api/v0/jobs/:id,
+    new RegExp('\\/api\\/v0\\/companies\\/[^\\/]+$'), // matches /api/v0/companies/:id
   ];
 
   (function getIds(obj: {}) {

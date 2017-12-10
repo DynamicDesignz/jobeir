@@ -161,7 +161,7 @@ const CompanyLogo = styled.img`
 `;
 
 const CompanyProduct = styled.p`
-  max-width: 62%;
+  max-width: 66%;
   font-size: 18px;
   line-height: 1.6;
   margin: 0 auto 20px;
