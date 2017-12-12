@@ -6,7 +6,7 @@ import { media } from '../../../styles/breakpoints';
 const HomeBanner = () => (
   <HomeBannerContainer>
     <HomeBannerImage
-      src="/public/static/imgs/home/home-man-looking-at-phone-subway.jpg"
+      src="/public/static/imgs/home/banner/home-man-looking-at-phone-subway.jpg"
       alt="Man looking at cellphone in subway"
     />
     <HomeBannerHeader>

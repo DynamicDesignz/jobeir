@@ -11,11 +11,11 @@ const featuredJobs = [
     description:
       'As Stripe looks beyond the API, we are hiring engineers to help build beautiful, usable interfaces for businesses building on top of Stripe.',
     image: {
-      src: '/public/static/imgs/home/stripe-office.jpg',
+      src: '/public/static/imgs/home/jobs/stripe-office.jpg',
       alt: 'Stripe job at Jobeir',
     },
     companyIcon: {
-      src: '/public/static/imgs/home/stripe-logo-icon.png',
+      src: '/public/static/imgs/home/jobs/stripe-logo-icon.png',
       alt: 'Stripe icon',
     },
   },
@@ -27,11 +27,11 @@ const featuredJobs = [
     description:
       'We are looking for creative and operational thinkers that are fueled by an entrepreneurial spirit to join our tight-knit group of product managers.',
     image: {
-      src: '/public/static/imgs/home/medium-office.jpg',
+      src: '/public/static/imgs/home/jobs/medium-office.jpg',
       alt: 'Medium job at Jobeir',
     },
     companyIcon: {
-      src: '/public/static/imgs/home/medium-logo-icon.png',
+      src: '/public/static/imgs/home/jobs/medium-logo-icon.png',
       alt: 'Medium icon',
     },
   },
@@ -42,11 +42,11 @@ const featuredJobs = [
     description:
       'As a designer you will work on a product used by anyone from small fashion boutiques, global brands or even international product suppliers and fulfillment centres.',
     image: {
-      src: '/public/static/imgs/home/shopify-office.jpg',
+      src: '/public/static/imgs/home/jobs/shopify-office.jpg',
       alt: 'Shopify jobs at Jobeir',
     },
     companyIcon: {
-      src: '/public/static/imgs/home/shopify-logo-icon.png',
+      src: '/public/static/imgs/home/jobs/shopify-logo-icon.png',
       alt: 'Shopify icon',
     },
   },

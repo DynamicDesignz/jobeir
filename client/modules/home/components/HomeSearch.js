@@ -2,13 +2,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchForm from '../../user-input/forms/form/search/SearchForm';
-import HomeSearchSubText from '../components/HomeSearchSubText';
+// import HomeSearchSubText from './HomeSearchSubText';
+import HomeFeaturedCompanies from './HomeFeaturedCompanies';
 
-const HomeSearch = () =>
+const HomeSearch = () => (
   <HomeSearchContainer>
     <SearchForm />
-    <HomeSearchSubText />
-  </HomeSearchContainer>;
+    <HomeFeaturedCompanies />
+    {/* <HomeSearchSubText /> */}
+  </HomeSearchContainer>
+);
 
 export default HomeSearch;
 
