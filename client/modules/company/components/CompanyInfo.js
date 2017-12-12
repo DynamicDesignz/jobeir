@@ -151,11 +151,11 @@ const Point = () => (
 const CompanyContainer = styled.div`text-align: center;`;
 
 const CompanyLogo = styled.img`
-  max-height: 60px;
+  height: 60px;
   margin-bottom: 30px;
 
   ${media.tablet`
-    max-height: 42px;
+    height: 42px;
     margin-bottom: 20px;
   `};
 `;
