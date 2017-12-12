@@ -76,12 +76,16 @@ class JobsSearch extends Component {
      * the page because there's a search bar at the bottom of the home page.
      */
     window.scrollTo(0, 0);
-    const { dispatch, jobs: { isLoaded }, query } = this.props;
+    const { dispatch, jobs: { isLoaded, postings }, query } = this.props;
     const queryData = queryString.stringify(query);
 
     // Only load jobs on mount if the jobs haven't been rendered
     if (!isLoaded) {
       dispatch(searchJobs(queryData));
+    }
+
+    if (isLoaded && postings.length === 0) {
+      this.setState({ hasMore: false });
     }
 
     this.calculateScreenWidth();
@@ -209,14 +213,13 @@ class JobsSearch extends Component {
       <JobSearchEmptyState>
         <StyledSearchIcon />
         <JobSearchEmptyStateHeader>
-          We couldn't find any job posts.{' '}
-          <LinkToAllJobs to="/jobs"> See all jobs</LinkToAllJobs>
+          We couldn't find any job posts matching your criteria.{' '}
         </JobSearchEmptyStateHeader>
-        <JobSearchEmptyStateHeader lessMargin>
-          Be the first to{' '}
+        <JobSearchEmptyStateHeader>
           <LinkToCreate onClick={this.handleCreateJobClick}>
-            create one
-          </LinkToCreate>
+            Be the first to create one
+          </LinkToCreate>{' '}
+          or <LinkToAllJobs to="/jobs">view all jobs</LinkToAllJobs>
         </JobSearchEmptyStateHeader>
       </JobSearchEmptyState>
     );
@@ -396,13 +399,17 @@ const JobSearchEmptyState = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 50px;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
 `;
 
 const JobSearchEmptyStateHeader = styled.h4`
   margin-top: ${props => (props.lessMargin ? '10px' : '20px')};
   font-size: 18px;
   font-weight: 400;
+  text-align: center;
 
   ${media.phablet`
     margin-top: 10px;
