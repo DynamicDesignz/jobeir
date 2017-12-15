@@ -12,8 +12,10 @@ import CompanyFormLocationEdit from './CompanyFormLocationEdit';
 import Autocomplete from '../../../autocomplete/Autocomplete';
 
 class CompanyFormStepThree extends Component {
-  formSubmit = (data: {}): void => {
-    this.props.dispatch(createCompany(data, '/create/company/upload'));
+  formSubmit = (): void => {
+    const { dispatch, newCompanyData } = this.props;
+
+    dispatch(createCompany(newCompanyData, '/create/company/upload'));
   };
 
   render() {
@@ -22,7 +24,7 @@ class CompanyFormStepThree extends Component {
     return (
       <FormWrapper
         handleSubmit={handleSubmit}
-        formSubmit={this.formSubmit}
+        formSubmit={() => {}}
         formErrors={companies.errors}
         theme="marble"
       >
@@ -62,6 +64,8 @@ class CompanyFormStepThree extends Component {
           <SubmitButton
             name="submitButton"
             buttonText="Next"
+            type="button"
+            handleClick={this.formSubmit}
             disabled={locations.length === 0}
             isSubmitting={companies.isCreating}
           />
@@ -75,6 +79,7 @@ const selector = formValueSelector('company');
 
 const mapStateToProps = state => ({
   companies: state.account.companies,
+  newCompanyData: state.form.company.values,
   locations: selector(state, 'locations') || [],
 });
 

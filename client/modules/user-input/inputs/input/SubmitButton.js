@@ -5,21 +5,34 @@ import { media } from '../../../../styles/breakpoints';
 import Loader from '../../../../styles/loader';
 
 // check if there are any form errors
-const isDisabled = (errors: Array<{}> = []): boolean => errors.length >= 1;
+const checkIfDisabled = (errors: Array<{}> = []): boolean => errors.length >= 1;
 
 export const SubmitButton = (props: {
   disabled: boolean,
   buttonText: string,
   isSubmitting: boolean,
+  handleClick: Function,
   formErrors: Array<{}>,
-}) => (
-  <Button
-    type="submit"
-    disabled={props.disabled || isDisabled(props.formErrors)}
-  >
-    {props.isSubmitting ? <Loader /> : props.buttonText || 'Submit'}
-  </Button>
-);
+  type: 'string',
+}) => {
+  const isDisabled = props.disabled || checkIfDisabled(props.formErrors);
+  return (
+    <Button
+      type={props.type || 'submit'}
+      disabled={isDisabled}
+      onClick={isDisabled ? () => {} : props.handleClick}
+    >
+      {props.isSubmitting ? <Loader /> : props.buttonText || 'Submit'}
+    </Button>
+  );
+};
+SubmitButton.defaultProps = {
+  disabled: false,
+  buttonText: 'Next',
+  isSubmitting: false,
+  formErrors: [],
+  type: '',
+};
 
 const Button = styled.button`
   border-radius: ${props => props.theme.button.borderRadius};
