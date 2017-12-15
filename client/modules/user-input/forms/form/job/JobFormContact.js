@@ -112,6 +112,7 @@ const FormListItem = styled.div`
 `;
 
 const FormListRemoveItem = styled.div`
+  z-index: 1;
   position: absolute;
   right: 18px;
   top: 18px;
