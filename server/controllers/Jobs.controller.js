@@ -8,57 +8,11 @@ import mongoose from 'mongoose';
 // dynamically building our query to support legacy paths
 const buildJobQuery = id => {
   const query = {};
-
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(id);
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
-  console.log(mongoose.Types.ObjectId.isValid(id));
   if (mongoose.Types.ObjectId.isValid(id)) {
     query._id = id;
   } else {
     query.pathname = id;
   }
-
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
-  console.log(query);
   return query;
 };
 
@@ -115,7 +69,7 @@ export const createJob = async (req, res) => {
     .join('-')
     .toLowerCase();
 
-  const pathname = `${id}-${pathTitle}`;
+  const pathname = `${pathTitle}-${id}`;
 
   const job = await new Jobs({
     description: {

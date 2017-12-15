@@ -58,13 +58,19 @@ export const checkCompany = async (req, res) => {
  */
 export const createCompany = async (req, res) => {
   const { body, user: { _id } } = req;
+  const name = sanitizeHtml(
+    body.name
+      .toLowerCase()
+      .split(' ')
+      .join('-'),
+  );
 
   const company = await new Company({
     creator: _id,
     email: body.email,
     members: [{ member: _id }],
     locations: body.locations,
-    name: sanitizeHtml(body.name.toLowerCase()),
+    name,
     displayName: sanitizeHtml(body.name),
     website: sanitizeHtml(body.website),
     size: sanitizeHtml(body.size),
